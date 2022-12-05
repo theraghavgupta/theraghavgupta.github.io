@@ -8,6 +8,7 @@
   --col7: #304598;
   --col8: #890608;
   --btnfont: 24px;
+  --font-family-hindi: 'Kalam',cursive;
   --fontfamily1: "Raleway", sans-serif;
   --fontfamily2: "Josefin Sans", sans-serif;
   --bgcolor: transparent;
@@ -343,21 +344,35 @@ header .svg-active {
           transition-delay: 1.0s;
 }
 .slider-container .slider .word .media .icon1:nth-child(1):hover {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
   fill: #2d3032;
 }
 
 .slider-container .slider .word .media .icon1:nth-child(2):hover {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+  
   fill: #0056ff;
 }
 
 .slider-container .slider .word .media .icon1:nth-child(3):hover {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+  
   fill: #bf1818;
 }
 
 .slider-container .slider .word .media .icon1:nth-child(4):hover {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+  
   fill: #38b1c6;
 }
 .slider-container .slider .word .media .icon1:nth-child(5):hover {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+  
   fill: #ea4c89;
 }
 .sc-visible {
@@ -430,7 +445,7 @@ header .svg-active {
 }
 
 .intro .btn-text h1 {
-  font-family: var(--fontfamily2);
+  font-family: var(--font-family-hindi);
   padding: 0px 20px;
   font-weight: 500;
   line-height: 7vmax;
