@@ -221,12 +221,13 @@ const NODES = [
     { id: 'form',       name: 'Form Automator',        phase: 'college',      tags: ['python', 'selenium'],               x: 132, y: 398, link: 'https://github.com/theraghavgupta/formResponseAutomater',  desc: 'Selenium script to auto-fill and submit Google Forms from a CSV source.' },
     { id: 'farming',    name: 'Precision Farming',     phase: 'college',      tags: ['python', 'ml'],                     x: 298, y: 455, desc: 'ML-based crop recommendation and yield prediction — B.E. Capstone project.' },
     // Professional era
-    { id: 'lakehouse',  name: 'Lakehouse Architecture', phase: 'professional', tags: ['azure', 'databricks', 'pyspark', 'data'], x: 598, y: 128, desc: 'Azure ADLS Gen2 + Databricks lakehouse: 10+ pharma datasets, 65+ Delta tables.' },
-    { id: 'dashboards', name: 'BI Dashboards (20+)',  phase: 'professional', tags: ['powerbi', 'tableau', 'data', 'web'], x: 742, y: 185, desc: 'Sales, HCP Engagement, Market Analytics & Executive dashboards across 5+ US pharma clients.' },
-    { id: 'mdm',        name: 'Data Warehouse & MDM', phase: 'professional', tags: ['sql', 'snowflake', 'data'],          x: 548, y: 298, desc: 'End-to-end data warehouse & MDM delivery for pharma CRM systems.' },
-    { id: 'rag',        name: 'RAG Chatbot PoC',       phase: 'professional', tags: ['genai', 'python', 'azure', 'ai'],   x: 838, y: 138, desc: 'Retrieval-Augmented Generation chatbot for pharma literature search on Azure.' },
-    { id: 'summarizer', name: 'Article Summarizer',   phase: 'professional', tags: ['genai', 'python', 'ai'],            x: 828, y: 308, desc: 'LLM-powered tool summarizing pharma research articles and clinical trial data.' },
-    { id: 'fabric',     name: 'PowerBI-Copilot',       phase: 'professional', tags: ['genai', 'powerbi', 'fabric', 'ai'], x: 688, y: 418, desc: 'Natural language analytics via PowerBI Copilot in Microsoft Fabric.' },
+    { id: 'lakehouse',  name: 'Pharma Lakehouse',       phase: 'professional', tags: ['azure', 'databricks', 'pyspark', 'data'], x: 598, y: 128, desc: 'Azure ADLS Gen2 + Databricks integrating IQVIA Xponent, DDD, LAAD, Veeva CRM, Copay, Chargebacks, GPO & more — 65+ curated Delta tables with PySpark KPI pipelines (Call Attainment, ADS, TOT).' },
+    { id: 'dashboards', name: 'BI Dashboards (20+)',    phase: 'professional', tags: ['powerbi', 'tableau', 'data', 'web'], x: 742, y: 185, desc: 'Sales Insights, Market Analytics, HCP Engagement, Contract Pricing, Executive Reporting, Utilization & Recruitment dashboards for US pharma commercial teams across 5+ clients.' },
+    { id: 'mdm',        name: 'Data Warehouse & MDM',   phase: 'professional', tags: ['sql', 'snowflake', 'data'],          x: 548, y: 298, desc: 'End-to-end MDM & data warehouse across 5+ US pharma CRM systems — architecture, dev, QC frameworks, system validation checks, documentation trackers, and project audit support.' },
+    { id: 'agents',     name: 'Databricks AI Agents',   phase: 'professional', tags: ['databricks', 'langchain', 'genai', 'ai', 'python', 'azure'], x: 762, y: 248, desc: 'Building Databricks-native AI agents with multi-agent workflows using LangChain and Databricks Genie — production-grade agentic AI for pharma analytics and intelligent data querying.' },
+    { id: 'rag',        name: 'RAG Chatbot',             phase: 'professional', tags: ['genai', 'python', 'azure', 'ai'],   x: 870, y: 148, desc: 'RAG-based chatbot on Azure for pharma literature search — semantic chunking, vector store retrieval, and LLM answer synthesis over medical research documents.' },
+    { id: 'summarizer', name: 'Article Summarizer',     phase: 'professional', tags: ['genai', 'python', 'ai'],            x: 868, y: 318, desc: 'LLM-powered summarization of pharma research articles and clinical trial data, enabling field teams to extract insights from dense scientific literature instantly.' },
+    { id: 'fabric',     name: 'PowerBI-Copilot',         phase: 'professional', tags: ['genai', 'powerbi', 'fabric', 'ai'], x: 668, y: 418, desc: 'PowerBI Copilot integration in Microsoft Fabric — natural language querying over commercial pharma dashboards for leadership teams. First GenAI-in-BI PoC at the firm.' },
 ];
 
 const EDGES = [
@@ -238,19 +239,24 @@ const EDGES = [
     { a: 'sorting',   b: 'crypto',     type: 'web',    cross: false },
     { a: 'flappy',    b: 'sniffer',    type: 'college', cross: false },
     { a: 'flappy',    b: 'sorting',    type: 'college', cross: false },
-    // Professional internal
+    // Professional internal — data layer
     { a: 'lakehouse',  b: 'dashboards', type: 'data',   cross: false },
     { a: 'lakehouse',  b: 'mdm',        type: 'data',   cross: false },
     { a: 'dashboards', b: 'mdm',        type: 'data',   cross: false },
     { a: 'dashboards', b: 'fabric',     type: 'data',   cross: false },
+    // Professional internal — AI layer
+    { a: 'agents',     b: 'rag',        type: 'ai',     cross: false },
+    { a: 'agents',     b: 'summarizer', type: 'ai',     cross: false },
+    { a: 'agents',     b: 'fabric',     type: 'ai',     cross: false },
+    { a: 'agents',     b: 'lakehouse',  type: 'azure',  cross: false },
     { a: 'rag',        b: 'summarizer', type: 'ai',     cross: false },
     { a: 'rag',        b: 'fabric',     type: 'ai',     cross: false },
     { a: 'summarizer', b: 'fabric',     type: 'ai',     cross: false },
-    { a: 'rag',        b: 'lakehouse',  type: 'azure',  cross: false },
     // Cross-phase bridges
     { a: 'farming',  b: 'lakehouse',  type: 'data',   cross: true },
-    { a: 'form',     b: 'rag',        type: 'python', cross: true },
+    { a: 'form',     b: 'agents',     type: 'python', cross: true },
     { a: 'crypto',   b: 'dashboards', type: 'web',    cross: true },
+    { a: 'sniffer',  b: 'rag',        type: 'python', cross: true },
 ];
 
 const EDGE_COLORS = {
@@ -269,7 +275,7 @@ const FILTER_MAP = {
     python:       n => n.tags.includes('python'),
     data:         n => n.tags.includes('data'),
     web:          n => n.tags.includes('web'),
-    ai:           n => n.tags.includes('ai') || n.tags.includes('genai'),
+    ai:           n => n.tags.includes('ai') || n.tags.includes('genai') || n.tags.includes('langchain'),
 };
 
 function svgEl(tag) {
