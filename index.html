@@ -3,325 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Raghav Gupta — Data Engineer, AI & Analytics Consultant. Building data pipelines, dashboards, and ventures from Gurugram, India.">
     <link rel="shortcut icon" type="image/x-icon" href="pictures/favicon.ico">
     <link rel="stylesheet" href="style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Kalam&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <script defer src="js/main.js"></script>
-    <script defer src="js/animation.js"></script>
     <title>Raghav Gupta — and0</title>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
-<header id="nav-header">
-    <a href="#home"><img class="main-icon" src="pictures/icons8-duck-64.png" alt="and0"></a>
-    <nav class="nav2" id="navigation">
-        <ul>
-            <li><a href="#home"><span>Home</span></a></li>
-            <li><a href="#about"><span>About</span></a></li>
-            <li><a href="#experience"><span>Experience</span></a></li>
-            <li><a href="#projects"><span>Projects</span></a></li>
-            <li><a href="#life"><span>Life</span></a></li>
-            <li><a href="#connect"><span>Connect</span></a></li>
-        </ul>
+<div id="page-progress"></div>
+
+<!-- HEADER -->
+<header id="site-header">
+    <a href="#home" class="header-logo">and0</a>
+    <nav class="header-nav" id="header-nav">
+        <a href="#about" data-section="about">About</a>
+        <a href="#journey" data-section="journey">Journey</a>
+        <a href="#projects" data-section="projects">Projects</a>
+        <a href="#arsenal" data-section="arsenal">Arsenal</a>
+        <a href="#life" data-section="life">Life</a>
+        <a href="#connect" data-section="connect">Connect</a>
     </nav>
-    <div>
-        <svg class="menu" height="384pt" viewBox="0 -53 384 384" width="384pt" xmlns="http://www.w3.org/2000/svg">
-            <path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/>
-            <path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/>
-            <path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/>
-        </svg>
-    </div>
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
 </header>
 
-<!-- ===== SLIDE-OUT DRAWER ===== -->
-<div class="slider-container">
-    <div class="slider">
-        <div class="icon">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492 492" xml:space="preserve">
-                <path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"/>
-            </svg>
-        </div>
-        <div class="word">
-            <h3>Where there's code,<br>there's a bug!</h3>
-            <p>Find me on:</p>
-            <div class="media">
-                <a class="icon1" href="https://github.com/theraghavgupta" target="_blank" rel="noopener noreferrer">
-                    <svg height="24" viewBox="0 0 16 16" width="24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
-                </a>
-                <a class="icon1" href="https://www.linkedin.com/in/raghav-gupta-a01b401ba/" target="_blank" rel="noopener noreferrer">
-                    <svg height="24" viewBox="0 0 16 16" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
-                </a>
-                <a class="icon1" href="https://www.youtube.com/channel/UCeRLGtCtjOpvprVNvfQjZTQ" target="_blank" rel="noopener noreferrer">
-                    <svg height="24" viewBox="0 0 16 16" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>
-                </a>
-                <a class="icon1" href="https://twitter.com/AndrokottoGupta" target="_blank" rel="noopener noreferrer">
-                    <svg height="24" viewBox="0 0 16 16" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/></svg>
-                </a>
-                <a class="icon1" href="https://www.instagram.com/_theraghavgupta/" target="_blank" rel="noopener noreferrer">
-                    <svg height="24" viewBox="0 0 16 16" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
-                </a>
-            </div>
-        </div>
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close menu">&times;</button>
+    <nav class="mobile-nav">
+        <a href="#about">About</a>
+        <a href="#journey">Journey</a>
+        <a href="#projects">Projects</a>
+        <a href="#arsenal">Arsenal</a>
+        <a href="#life">Life</a>
+        <a href="#connect">Connect</a>
+    </nav>
+    <div class="mobile-socials">
+        <a href="https://github.com/theraghavgupta" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/raghav-gupta-a01b401ba/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
 </div>
 
 <!-- ===== HERO ===== -->
-<section class="hero intro" id="home">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
+<section id="home" class="hero">
+    <canvas id="hero-canvas"></canvas>
     <div class="hero-content">
         <p class="hero-greeting">&#2344;&#2350;&#2360;&#2381;&#2340;&#2375;!</p>
-        <h1 class="hero-name">I am Raghav Gupta</h1>
-        <p class="hero-role">Problem Solver &middot; AI &amp; Analytics Engineer</p>
-        <p class="hero-blurb">Building data pipelines by day. Planning ventures by night. My cat judges all of it.</p>
-        <div class="hero-cta">
-            <a href="#about" class="btn-primary">About Me</a>
-            <a href="#connect" class="btn-outline">Let's Talk</a>
+        <h1 class="hero-name">
+            <span class="name-part" style="--d:0">Raghav</span>
+            <span class="name-part" style="--d:1">Gupta</span>
+        </h1>
+        <div class="hero-role">
+            <span class="role-prefix">I'm a&nbsp;</span>
+            <span id="role-text" class="role-text"></span><span class="role-cursor">|</span>
+        </div>
+        <p class="hero-tagline">Building data pipelines by day. Planning ventures by night.<br>My cat judges all of it.</p>
+        <div class="hero-actions">
+            <a href="#journey" class="btn-primary">My Story</a>
+            <a href="#connect" class="btn-ghost">Let's Talk &rarr;</a>
         </div>
     </div>
-    <div class="hero-scroll-hint"><span></span></div>
+    <div class="hero-scroll">
+        <div class="scroll-track"><div class="scroll-ball"></div></div>
+        <span>Scroll</span>
+    </div>
 </section>
 
 <!-- ===== ABOUT ===== -->
-<section class="section about-sec" id="about">
-    <div class="section-inner">
-        <div class="section-header">
-            <span class="label">About Me</span>
-            <h2>More than just code.</h2>
-        </div>
-        <div class="container">
-            <div class="about-img left">
-                <img src="pictures/profile.png" alt="Raghav Gupta">
-            </div>
-            <div class="about-text right">
-                <p>I'm Raghav &mdash; data engineer, dashboard builder, gamer, cat dad, and relentless idea machine based in Gurugram, India. I help pharma companies turn messy data into clear insights, and I'm equally comfortable architecting a Lakehouse on Databricks as I am scribbling down the next venture idea at 2am.</p>
-                <p>Currently <strong>Associate Consultant (Technology) at ProcDNA Analytics</strong>, leading end-to-end commercial pharma data projects.</p>
-                <p class="about-contact"><a href="mailto:raghavgupta3659@gmail.com">raghavgupta3659@gmail.com</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;Gurugram, India</p>
-                <div class="tag-row">
-                    <span class="tag">Problem Solver</span>
-                    <span class="tag">Venture Builder</span>
-                    <span class="tag">Traveller</span>
-                    <span class="tag">PS5 Gamer</span>
-                    <span class="tag">Cat Dad</span>
+<section id="about" class="sec-light">
+    <div class="sec-inner">
+        <div class="about-grid">
+            <div class="about-visual reveal-left">
+                <div class="profile-wrap">
+                    <img src="pictures/profile.png" alt="Raghav Gupta" class="profile-img">
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== EXPERIENCE ===== -->
-<section class="section experience-sec" id="experience">
-    <div class="section-inner">
-        <div class="section-header">
-            <span class="label">Experience</span>
-            <h2>Where I've been.</h2>
-        </div>
-        <div class="container timeline">
-            <div class="timeline-entry left">
-                <div class="tl-date">Nov 2022 &mdash; Present</div>
-                <div class="tl-card">
-                    <div class="tl-dot"></div>
-                    <h3>Associate Consultant &mdash; Technology</h3>
-                    <p class="tl-company">ProcDNA Analytics Pvt Ltd &nbsp;&middot;&nbsp; Gurugram</p>
-                    <ul>
-                        <li>End-to-end delivery of data warehouse, MDM &amp; reporting projects across 5+ US pharma clients</li>
-                        <li>Built 20+ dashboards in Power BI &amp; Tableau &mdash; Sales, Market Analytics, HCP Engagement, Executive Reporting</li>
-                        <li>Designed Lakehouse architecture on Azure ADLS Gen2 + Databricks integrating 10+ pharma datasets &amp; 65+ curated Delta tables</li>
-                        <li>SQL &amp; PySpark metric pipelines for real-time KPIs: Call Attainment, ADS, TOT</li>
-                        <li>Led GenAI PoCs: Article Summarizer, RAG Chatbot, PowerBI-Copilot in Microsoft Fabric</li>
-                        <li>Delivered hands-on training in Power BI, SQL &amp; IICS with post-certification management</li>
-                    </ul>
-                    <div class="tl-tags">
-                        <span>Azure</span>
-                        <span>Databricks</span>
-                        <span>GenAI</span>
-                        <span>Power BI</span>
-                        <span>PySpark</span>
-                        <span>SQL</span>
-                        <span>Snowflake</span>
+                <div class="stats-row">
+                    <div class="stat">
+                        <div class="stat-top">
+                            <span class="stat-n" data-to="3">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Years Exp</span>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-top">
+                            <span class="stat-n" data-to="20">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Dashboards</span>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-top">
+                            <span class="stat-n" data-to="5">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Clients</span>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-top">
+                            <span class="stat-n" data-to="65">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <span class="stat-label">Delta Tables</span>
                     </div>
                 </div>
             </div>
-            <div class="timeline-entry right">
-                <div class="tl-date">2019 &mdash; 2023</div>
-                <div class="tl-card">
-                    <div class="tl-dot"></div>
-                    <h3>B.E. Computer Engineering</h3>
-                    <p class="tl-company">Thapar Institute of Engineering &amp; Technology</p>
-                    <p class="tl-detail">CGPA: 7.31 / 10</p>
-                    <p class="tl-detail">Where "why does this work?" became a lifestyle.</p>
+            <div class="about-text reveal-right">
+                <span class="sec-label">About</span>
+                <h2>More than just code.</h2>
+                <p>I'm Raghav &mdash; data engineer, dashboard builder, gamer, cat dad, and relentless idea machine based in Gurugram, India. I help pharma companies turn messy data into clear insights, and I'm equally comfortable architecting a Lakehouse on Databricks as scribbling down the next venture idea at 2am.</p>
+                <p>Currently <strong>Associate Consultant (Technology) at ProcDNA Analytics</strong>, leading end-to-end commercial pharma data projects.</p>
+                <div class="tag-list">
+                    <span class="pill">Problem Solver</span>
+                    <span class="pill">Venture Builder</span>
+                    <span class="pill">Traveller</span>
+                    <span class="pill">PS5 Gamer</span>
+                    <span class="pill">Cat Dad</span>
                 </div>
+                <p class="about-contact">
+                    <a href="mailto:raghavgupta3659@gmail.com">raghavgupta3659@gmail.com</a>
+                    <span class="dot">&nbsp;&middot;&nbsp;</span>Gurugram, India
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== SKILLS ===== -->
-<section class="section skills-sec" id="skills">
-    <div class="section-inner">
-        <div class="section-header">
-            <span class="label">Skills</span>
+<!-- ===== JOURNEY ===== -->
+<section id="journey" class="sec-dark">
+    <div class="sec-inner">
+        <div class="sec-header reveal-up">
+            <span class="sec-label">Journey</span>
+            <h2>My story so far.</h2>
+            <p>From first lines of code to building data infrastructure for pharma companies.</p>
+        </div>
+
+        <div class="timeline">
+
+            <!-- Phase 00 -->
+            <div class="tl-phase reveal-up" data-phase="origin">
+                <div class="tl-spine">
+                    <div class="tl-node tl-node--sm">00</div>
+                </div>
+                <div class="tl-body">
+                    <div class="phase-tag">ORIGIN</div>
+                    <h3>The Spark</h3>
+                    <p class="tl-period">Pre-2019</p>
+                    <p class="tl-desc">It started with curiosity about how websites worked. Then HTML, then C, then "why stop here?" &mdash; the rest is GitHub commits and caffeine.</p>
+                </div>
+            </div>
+
+            <!-- Phase 01: College -->
+            <div class="tl-phase reveal-up" data-phase="college">
+                <div class="tl-spine">
+                    <div class="tl-node tl-node--college">01</div>
+                </div>
+                <div class="tl-body">
+                    <div class="phase-tag phase-tag--college">BUILDER</div>
+                    <h3>B.E. Computer Engineering</h3>
+                    <p class="tl-period">2019 &mdash; 2023</p>
+                    <p class="tl-location">Thapar Institute of Engineering &amp; Technology &nbsp;&middot;&nbsp; CGPA 7.31</p>
+                    <p class="tl-desc">Four years of building everything &mdash; games in OpenGL, web apps in Django, automation scripts, React apps, and an ML capstone. The kind of learning that doesn't come from a textbook.</p>
+                    <div class="tl-projects">
+                        <a class="tl-proj" href="https://github.com/theraghavgupta/flappybird" target="_blank" rel="noopener noreferrer">
+                            <img src="pictures/projects/Flappy_Bird.png" alt="Flappy Bird">
+                            <div class="tl-proj-info">
+                                <strong>Flappy Bird</strong>
+                                <span>C++ &middot; OpenGL</span>
+                            </div>
+                        </a>
+                        <div class="tl-proj">
+                            <img src="pictures/projects/sniffer.jpeg" alt="Packet Sniffer">
+                            <div class="tl-proj-info">
+                                <strong>Packet Sniffer</strong>
+                                <span>Python &middot; Networking</span>
+                            </div>
+                        </div>
+                        <div class="tl-proj">
+                            <img src="pictures/projects/bloodManage.png" alt="Blood Bank">
+                            <div class="tl-proj-info">
+                                <strong>Blood Bank</strong>
+                                <span>Django &middot; Python</span>
+                            </div>
+                        </div>
+                        <a class="tl-proj" href="https://github.com/theraghavgupta/sorting-visualiser" target="_blank" rel="noopener noreferrer">
+                            <img src="pictures/projects/sorting-visualiser.png" alt="Sorting Visualizer">
+                            <div class="tl-proj-info">
+                                <strong>Sorting Visualizer</strong>
+                                <span>JavaScript &middot; Web</span>
+                            </div>
+                        </a>
+                        <a class="tl-proj" href="https://github.com/theraghavgupta/react-crypto-tracker" target="_blank" rel="noopener noreferrer">
+                            <img src="pictures/projects/crypto-Exchanges.png" alt="Crypto Tracker">
+                            <div class="tl-proj-info">
+                                <strong>Crypto Tracker</strong>
+                                <span>React &middot; Web</span>
+                            </div>
+                        </a>
+                        <a class="tl-proj" href="https://github.com/theraghavgupta/formResponseAutomater" target="_blank" rel="noopener noreferrer">
+                            <img src="pictures/projects/selenium.png" alt="Form Automator">
+                            <div class="tl-proj-info">
+                                <strong>Form Automator</strong>
+                                <span>Python &middot; Selenium</span>
+                            </div>
+                        </a>
+                        <div class="tl-proj">
+                            <img src="pictures/projects/precision-agriculture.png" alt="Precision Farming">
+                            <div class="tl-proj-info">
+                                <strong>Precision Farming</strong>
+                                <span>ML &middot; Capstone</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 02: Professional -->
+            <div class="tl-phase reveal-up" data-phase="professional">
+                <div class="tl-spine">
+                    <div class="tl-node tl-node--pro">02</div>
+                </div>
+                <div class="tl-body">
+                    <div class="phase-tag phase-tag--pro">ENGINEER</div>
+                    <h3>Associate Consultant &mdash; Technology</h3>
+                    <p class="tl-period">Nov 2022 &mdash; Present</p>
+                    <p class="tl-location">ProcDNA Analytics Pvt Ltd &nbsp;&middot;&nbsp; Gurugram</p>
+                    <p class="tl-desc">Leading end-to-end data projects for US pharma clients. Designing Lakehouses, building PySpark pipelines, shipping BI dashboards, and running GenAI PoCs &mdash; all in the same sprint.</p>
+                    <div class="work-cards">
+                        <div class="work-card">
+                            <div class="wc-body">
+                                <strong>Lakehouse Architecture</strong>
+                                <p>Azure ADLS Gen2 + Databricks &middot; 10+ datasets &middot; 65+ Delta tables</p>
+                                <div class="wc-tags"><span>Azure</span><span>Databricks</span><span>PySpark</span></div>
+                            </div>
+                        </div>
+                        <div class="work-card">
+                            <div class="wc-body">
+                                <strong>20+ BI Dashboards</strong>
+                                <p>Sales, Market Analytics, HCP Engagement &amp; Executive Reporting</p>
+                                <div class="wc-tags"><span>Power BI</span><span>Tableau</span></div>
+                            </div>
+                        </div>
+                        <div class="work-card">
+                            <div class="wc-body">
+                                <strong>GenAI PoCs</strong>
+                                <p>RAG Chatbot, Article Summarizer, PowerBI-Copilot in Microsoft Fabric</p>
+                                <div class="wc-tags"><span>GenAI</span><span>Azure</span><span>Fabric</span></div>
+                            </div>
+                        </div>
+                        <div class="work-card">
+                            <div class="wc-body">
+                                <strong>Data Warehouse &amp; MDM</strong>
+                                <p>End-to-end delivery across 5+ US pharma clients</p>
+                                <div class="wc-tags"><span>SQL</span><span>Snowflake</span><span>IICS</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 03: Next -->
+            <div class="tl-phase tl-phase--future reveal-up" data-phase="next">
+                <div class="tl-spine">
+                    <div class="tl-node tl-node--future">&infin;</div>
+                </div>
+                <div class="tl-body">
+                    <div class="phase-tag phase-tag--future">NEXT</div>
+                    <h3>Venture Lab</h3>
+                    <p class="tl-period">In Progress</p>
+                    <p class="tl-desc">Too many ideas to stay still. Setting up a Venture Lab to actually ship them &mdash; not just think about them forever. The next chapter is being written.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROJECTS CONSTELLATION ===== -->
+<section id="projects" class="sec-dark sec-constellation">
+    <div class="sec-inner">
+        <div class="sec-header reveal-up">
+            <span class="sec-label">Projects</span>
+            <h2>The Constellation.</h2>
+            <p>Every project I've built &mdash; from college experiments to production systems. Hover to explore connections.</p>
+        </div>
+        <div class="constellation-filters reveal-up">
+            <button class="cf-btn active" data-filter="all">All</button>
+            <button class="cf-btn" data-filter="college">College Era</button>
+            <button class="cf-btn" data-filter="professional">Professional</button>
+            <button class="cf-btn" data-filter="python">Python</button>
+            <button class="cf-btn" data-filter="data">Data</button>
+            <button class="cf-btn" data-filter="web">Web</button>
+            <button class="cf-btn" data-filter="ai">AI / GenAI</button>
+        </div>
+        <div class="constellation-wrap">
+            <svg id="constellation-svg" viewBox="0 0 940 520" preserveAspectRatio="xMidYMid meet" aria-label="Project constellation map"></svg>
+            <div id="node-tooltip" class="node-tooltip"></div>
+        </div>
+        <div class="proj-mobile-grid" id="proj-mobile-grid"></div>
+    </div>
+</section>
+
+<!-- ===== ARSENAL ===== -->
+<section id="arsenal" class="sec-light">
+    <div class="sec-inner">
+        <div class="sec-header reveal-up">
+            <span class="sec-label">Arsenal</span>
             <h2>Tools I actually use.</h2>
         </div>
-        <div class="container skills-grid">
-            <div class="skill-col left">
-                <h4>Data &amp; BI</h4>
-                <div class="skill-tags">
-                    <span>Databricks</span>
-                    <span>Power BI</span>
-                    <span>Tableau</span>
-                    <span>Snowflake</span>
-                    <span>IICS</span>
+        <div class="arsenal-grid">
+            <div class="arsenal-cat reveal-up" style="--d:0">
+                <div class="acat-head">
+                    <div class="acat-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <h4>Data &amp; BI</h4>
+                </div>
+                <div class="skill-chips">
+                    <span class="chip chip--e">Databricks</span>
+                    <span class="chip chip--e">Power BI</span>
+                    <span class="chip chip--a">Tableau</span>
+                    <span class="chip chip--a">Snowflake</span>
+                    <span class="chip chip--m">IICS</span>
                 </div>
             </div>
-            <div class="skill-col middle">
-                <h4>Engineering</h4>
-                <div class="skill-tags">
-                    <span>Azure</span>
-                    <span>SQL</span>
-                    <span>Python</span>
-                    <span>Linux</span>
-                    <span>PySpark</span>
+            <div class="arsenal-cat reveal-up" style="--d:1">
+                <div class="acat-head">
+                    <div class="acat-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <h4>Engineering</h4>
+                </div>
+                <div class="skill-chips">
+                    <span class="chip chip--e">Azure</span>
+                    <span class="chip chip--e">SQL</span>
+                    <span class="chip chip--a">Python</span>
+                    <span class="chip chip--a">PySpark</span>
+                    <span class="chip chip--m">Linux</span>
                 </div>
             </div>
-            <div class="skill-col right">
-                <h4>Dev &amp; Other</h4>
-                <div class="skill-tags">
-                    <span>C / C++</span>
-                    <span>GenAI</span>
-                    <span>Microsoft Fabric</span>
-                    <span>Dataiku</span>
+            <div class="arsenal-cat reveal-up" style="--d:2">
+                <div class="acat-head">
+                    <div class="acat-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                    </div>
+                    <h4>Dev &amp; AI</h4>
                 </div>
-            </div>
-            <div class="skill-certs middle">
-                <h4>Certifications</h4>
-                <ul>
-                    <li>Databricks Certified Data Engineer Associate</li>
-                    <li>Core Designer Certification &mdash; Dataiku</li>
-                    <li>5-Star Gold Badge, C++ &mdash; HackerRank</li>
-                </ul>
+                <div class="skill-chips">
+                    <span class="chip chip--a">GenAI</span>
+                    <span class="chip chip--a">Microsoft Fabric</span>
+                    <span class="chip chip--m">Dataiku</span>
+                    <span class="chip chip--m">C / C++</span>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- ===== PROJECTS ===== -->
-<section class="section projects-sec" id="projects">
-    <div class="section-inner">
-        <div class="section-header">
-            <span class="label">Projects</span>
-            <h2>Things I've built.</h2>
-            <p class="section-sub">From student days to production code &mdash; all of it stays.</p>
-        </div>
-        <div class="container projects-grid">
-            <div class="proj-card left">
-                <img src="pictures/projects/precision-agriculture.png" alt="Precision Farming">
-                <div class="proj-overlay">
-                    <span>Capstone Project</span>
-                    <h4>Precision Farming</h4>
+        <div class="certs-row reveal-up">
+            <h4 class="certs-label">Certifications</h4>
+            <div class="certs-grid">
+                <div class="cert-card">
+                    <div class="cert-badge">DBX</div>
+                    <div class="cert-info">
+                        <strong>Databricks Certified Data Engineer Associate</strong>
+                    </div>
                 </div>
-            </div>
-            <div class="proj-card middle">
-                <img src="pictures/projects/Flappy_Bird.png" alt="Flappy Bird">
-                <a href="https://github.com/theraghavgupta/flappybird" class="proj-overlay" target="_blank" rel="noopener noreferrer">
-                    <span>C++ &amp; OpenGL Game</span>
-                    <h4>Flappy Bird</h4>
-                </a>
-            </div>
-            <div class="proj-card right">
-                <img src="pictures/projects/sniffer.jpeg" alt="Network Packet Sniffer">
-                <div class="proj-overlay">
-                    <span>Python CLI App</span>
-                    <h4>Network Packet Sniffer</h4>
+                <div class="cert-card">
+                    <div class="cert-badge">DKU</div>
+                    <div class="cert-info">
+                        <strong>Core Designer Certification &mdash; Dataiku</strong>
+                    </div>
                 </div>
-            </div>
-            <div class="proj-card left">
-                <img src="pictures/projects/bloodManage.png" alt="Blood Bank Management">
-                <div class="proj-overlay">
-                    <span>Django WebApp</span>
-                    <h4>Blood Bank Management</h4>
+                <div class="cert-card">
+                    <div class="cert-badge">HR</div>
+                    <div class="cert-info">
+                        <strong>5-Star Gold Badge, C++ &mdash; HackerRank</strong>
+                    </div>
                 </div>
-            </div>
-            <div class="proj-card middle">
-                <img src="pictures/projects/sorting-visualiser.png" alt="Sorting Visualiser">
-                <a href="https://github.com/theraghavgupta/sorting-visualiser" class="proj-overlay" target="_blank" rel="noopener noreferrer">
-                    <span>WebApp</span>
-                    <h4>Sorting Visualiser</h4>
-                </a>
-            </div>
-            <div class="proj-card right">
-                <img src="pictures/projects/crypto-Exchanges.png" alt="Crypto Currency Tracker">
-                <a href="https://github.com/theraghavgupta/react-crypto-tracker" class="proj-overlay" target="_blank" rel="noopener noreferrer">
-                    <span>React WebApp</span>
-                    <h4>Crypto Currency Tracker</h4>
-                </a>
-            </div>
-            <div class="proj-card middle">
-                <img src="pictures/projects/selenium.png" alt="Automated Form Responder">
-                <a href="https://github.com/theraghavgupta/formResponseAutomater" class="proj-overlay" target="_blank" rel="noopener noreferrer">
-                    <span>Selenium Script</span>
-                    <h4>Auto Google Form Responder</h4>
-                </a>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ===== LIFE ===== -->
-<section class="section life-sec" id="life">
-    <div class="section-inner">
-        <div class="section-header">
-            <span class="label">Beyond Work</span>
+<section id="life" class="sec-dark">
+    <div class="sec-inner">
+        <div class="sec-header reveal-up">
+            <span class="sec-label">Beyond Work</span>
             <h2>The rest of the story.</h2>
         </div>
-        <div class="container life-grid">
-            <div class="life-card left">
-                <div class="life-num">01</div>
-                <h3>Venture Builder</h3>
-                <p>Too many ideas to stay still. Setting up a Venture Lab to actually ship them &mdash; not just think about them forever.</p>
+        <div class="life-grid">
+            <div class="life-card reveal-up" style="--i:0">
+                <div class="lc-num">01</div>
+                <div class="lc-body">
+                    <h3>Venture Builder</h3>
+                    <p>Too many ideas to stay still. Setting up a Venture Lab to actually ship them &mdash; not just think about them forever.</p>
+                </div>
+                <div class="lc-accent"></div>
             </div>
-            <div class="life-card middle">
-                <div class="life-num">02</div>
-                <h3>Traveller</h3>
-                <p>Always scoping the next destination. New places, new food, new problems to accidentally stumble into.</p>
+            <div class="life-card reveal-up" style="--i:1">
+                <div class="lc-num">02</div>
+                <div class="lc-body">
+                    <h3>Traveller</h3>
+                    <p>Always scoping the next destination. New places, new food, new problems to accidentally stumble into.</p>
+                </div>
+                <div class="lc-accent"></div>
             </div>
-            <div class="life-card middle">
-                <div class="life-num">03</div>
-                <h3>Gamer</h3>
-                <p>PS5 is where I go when dashboards start feeling like real life. Good for reflexes. Better for the soul.</p>
+            <div class="life-card reveal-up" style="--i:2">
+                <div class="lc-num">03</div>
+                <div class="lc-body">
+                    <h3>PS5 Gamer</h3>
+                    <p>PS5 is where I go when dashboards start feeling like real life. Good for reflexes. Better for the soul.</p>
+                </div>
+                <div class="lc-accent"></div>
             </div>
-            <div class="life-card right">
-                <div class="life-num">04</div>
-                <h3>Cat Dad</h3>
-                <p>Tinkos is the real boss at home. Supervises every late-night work session with maximum judgment.</p>
+            <div class="life-card reveal-up" style="--i:3">
+                <div class="lc-num">04</div>
+                <div class="lc-body">
+                    <h3>Cat Dad</h3>
+                    <p>Tinkos is the real boss at home. Supervises every late-night work session with maximum judgment.</p>
+                </div>
+                <div class="lc-accent"></div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ===== CONNECT ===== -->
-<section class="section connect-sec" id="connect">
-    <div class="section-inner">
-        <div class="section-header">
-            <span class="label">Connect</span>
+<section id="connect" class="sec-connect">
+    <div class="sec-inner">
+        <div class="connect-wrap reveal-up">
+            <span class="sec-label sec-label--amber">Connect</span>
             <h2>Let's build something.</h2>
-        </div>
-        <div class="container connect-grid">
-            <div class="connect-text left">
-                <p>Whether you have a project, a collab idea, a venture to discuss, or just want to say hi &mdash; I'm around. Drop a message or reach out directly.</p>
-                <p class="connect-email"><a href="mailto:raghavgupta3659@gmail.com">raghavgupta3659@gmail.com</a></p>
-                <div class="connect-links">
-                    <a href="https://github.com/theraghavgupta" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://www.linkedin.com/in/raghav-gupta-a01b401ba/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <a href="https://leetcode.com/theraghavgupta" target="_blank" rel="noopener noreferrer">LeetCode</a>
-                    <a href="https://www.hackerrank.com/theraghavgupta" target="_blank" rel="noopener noreferrer">HackerRank</a>
-                </div>
+            <p>Whether you have a project, a collab idea, a venture to discuss, or just want to say hi &mdash; I'm around.</p>
+            <a href="mailto:raghavgupta3659@gmail.com" class="connect-email">raghavgupta3659@gmail.com</a>
+            <div class="connect-socials">
+                <a href="https://github.com/theraghavgupta" target="_blank" rel="noopener noreferrer" class="soc-btn">
+                    <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/raghav-gupta-a01b401ba/" target="_blank" rel="noopener noreferrer" class="soc-btn">
+                    <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="https://www.youtube.com/channel/UCeRLGtCtjOpvprVNvfQjZTQ" target="_blank" rel="noopener noreferrer" class="soc-btn">
+                    <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>
+                    YouTube
+                </a>
+                <a href="https://www.instagram.com/_theraghavgupta/" target="_blank" rel="noopener noreferrer" class="soc-btn">
+                    <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
+                    Instagram
+                </a>
+                <a href="https://twitter.com/AndrokottoGupta" target="_blank" rel="noopener noreferrer" class="soc-btn">
+                    <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/></svg>
+                    Twitter
+                </a>
             </div>
-            <div class="connect-form right">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeiUDfFZ3MwcxfYrVvbgdGqrvjcIKmWw8wznBHXQbCvcYk12w/viewform?embedded=true" width="100%" height="420" frameborder="0" marginheight="0" marginwidth="0">Loading&hellip;</iframe>
+            <div class="connect-extra">
+                <a href="https://leetcode.com/theraghavgupta" target="_blank" rel="noopener noreferrer" class="connect-link">LeetCode &rarr;</a>
+                <a href="https://www.hackerrank.com/theraghavgupta" target="_blank" rel="noopener noreferrer" class="connect-link">HackerRank &rarr;</a>
             </div>
         </div>
     </div>
@@ -330,24 +469,22 @@
 <!-- ===== FOOTER ===== -->
 <footer>
     <div class="footer-inner">
-        <div class="footer-brand">
-            <p>Raghav Gupta <span>aka and0</span></p>
-        </div>
+        <div class="footer-brand">Raghav Gupta <span>aka and0</span></div>
         <div class="footer-socials">
-            <a class="fsoc" href="https://github.com/theraghavgupta" target="_blank" rel="noopener noreferrer">
-                <svg height="20" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+            <a href="https://github.com/theraghavgupta" target="_blank" rel="noopener noreferrer" fill="currentColor">
+                <svg viewBox="0 0 16 16" width="17" height="17" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
             </a>
-            <a class="fsoc" href="https://www.linkedin.com/in/raghav-gupta-a01b401ba/" target="_blank" rel="noopener noreferrer">
-                <svg height="20" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+            <a href="https://www.linkedin.com/in/raghav-gupta-a01b401ba/" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 16 16" width="17" height="17" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
             </a>
-            <a class="fsoc" href="https://www.youtube.com/channel/UCeRLGtCtjOpvprVNvfQjZTQ" target="_blank" rel="noopener noreferrer">
-                <svg height="20" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>
+            <a href="https://www.youtube.com/channel/UCeRLGtCtjOpvprVNvfQjZTQ" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 16 16" width="17" height="17" fill="currentColor"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>
             </a>
-            <a class="fsoc" href="https://twitter.com/AndrokottoGupta" target="_blank" rel="noopener noreferrer">
-                <svg height="20" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/></svg>
+            <a href="https://www.instagram.com/_theraghavgupta/" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 16 16" width="17" height="17" fill="currentColor"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
             </a>
-            <a class="fsoc" href="https://www.instagram.com/_theraghavgupta/" target="_blank" rel="noopener noreferrer">
-                <svg height="20" viewBox="0 0 16 16" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
+            <a href="https://twitter.com/AndrokottoGupta" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 16 16" width="17" height="17" fill="currentColor"><path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/></svg>
             </a>
         </div>
         <p class="footer-copy">Gurugram, India &nbsp;&middot;&nbsp; raghavgupta3659@gmail.com</p>
