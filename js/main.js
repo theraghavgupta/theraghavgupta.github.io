@@ -1,3 +1,242 @@
+/* ============================================================
+   MAIN.JS — rendering + behavior. You should not need to edit
+   this file to change what the site SAYS — that lives in
+   js/content.js. Edit this only to change how the site WORKS.
+   ============================================================ */
+
+/* ===== ICON LIBRARY (referenced by name from content.js) ===== */
+const ICONS = {
+    github:    '<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>',
+    linkedin:  '<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>',
+    youtube:   '<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/></svg>',
+    instagram: '<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>',
+    twitter:   '<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/></svg>',
+};
+
+const ACAT_ICONS = {
+    grid: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+    code: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+    ai:   '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>',
+};
+
+const CHIP_CLASS = { daily: 'chip--e', solid: 'chip--a', used: 'chip--m' };
+
+/* ============================================================
+   RENDERERS — build each section's DOM from CONTENT
+   ============================================================ */
+
+function renderHero() {
+    const root = document.getElementById('hero-root');
+    const h = CONTENT.hero;
+    const [first, ...rest] = CONTENT.identity.name.split(' ');
+    root.innerHTML = `
+        <p class="hero-greeting">${h.greeting}</p>
+        <h1 class="hero-name">
+            <span class="name-part" style="--d:0">${first}</span>
+            <span class="name-part" style="--d:1">${rest.join(' ')}</span>
+        </h1>
+        <div class="hero-role">
+            <span class="role-prefix">I'm a&nbsp;</span>
+            <span id="role-text" class="role-text"></span><span class="role-cursor">|</span>
+        </div>
+        <p class="hero-tagline">${h.tagline.replace(/\n/g, '<br>')}</p>
+        <div class="hero-actions">
+            <a href="${h.ctaPrimary.href}" class="btn-primary">${h.ctaPrimary.label}</a>
+            <a href="${h.ctaGhost.href}" class="btn-ghost">${h.ctaGhost.label}</a>
+        </div>
+    `;
+}
+
+function renderAbout() {
+    const root = document.getElementById('about-root');
+    const a = CONTENT.about;
+    root.innerHTML = `
+        <div class="about-visual reveal-left">
+            <div class="profile-wrap">
+                <img src="${a.image}" alt="${CONTENT.identity.name}" class="profile-img">
+            </div>
+            <div class="stats-row">
+                ${a.stats.map(s => `
+                    <div class="stat">
+                        <div class="stat-top">
+                            <span class="stat-n" data-to="${s.n}">0</span><span class="stat-plus">${s.suffix}</span>
+                        </div>
+                        <span class="stat-label">${s.label}</span>
+                    </div>`).join('')}
+            </div>
+        </div>
+        <div class="about-text reveal-right">
+            <span class="sec-label">${a.label}</span>
+            <h2>${a.heading}</h2>
+            ${a.paragraphs.map(p => `<p>${p}</p>`).join('')}
+            <div class="tag-list">
+                ${a.pills.map(p => `<span class="pill">${p}</span>`).join('')}
+            </div>
+            <p class="about-contact">
+                <a href="mailto:${CONTENT.identity.email}">${CONTENT.identity.email}</a>
+                <span class="dot">&nbsp;&middot;&nbsp;</span>${CONTENT.identity.location}
+            </p>
+        </div>
+    `;
+}
+
+function renderJourney() {
+    const root = document.getElementById('journey-root');
+    const j = CONTENT.journey;
+
+    const phaseHTML = j.phases.map(ph => `
+        <div class="tl-phase reveal-up">
+            <div class="tl-spine">
+                <div class="tl-node${ph.nodeStyle ? ' tl-node--' + ph.nodeStyle : ''}">${ph.node}</div>
+            </div>
+            <div class="tl-body">
+                <div class="phase-tag${ph.tagStyle ? ' phase-tag--' + ph.tagStyle : ''}">${ph.tag}</div>
+                <h3>${ph.title}</h3>
+                <p class="tl-period">${ph.period}</p>
+                ${ph.location ? `<p class="tl-location">${ph.location}</p>` : ''}
+                <p class="tl-desc">${ph.desc}</p>
+                ${ph.projects ? `
+                    <div class="tl-projects">
+                        ${ph.projects.map(pr => {
+                            const tag = pr.link ? 'a' : 'div';
+                            const attrs = pr.link ? ` href="${pr.link}" target="_blank" rel="noopener noreferrer"` : '';
+                            return `<${tag} class="tl-proj"${attrs}>
+                                <img src="${pr.img}" alt="${pr.name}">
+                                <div class="tl-proj-info">
+                                    <strong>${pr.name}</strong>
+                                    <span>${pr.sub}</span>
+                                </div>
+                            </${tag}>`;
+                        }).join('')}
+                    </div>` : ''}
+            </div>
+        </div>
+    `).join('');
+
+    root.innerHTML = `
+        <div class="sec-header reveal-up">
+            <span class="sec-label">${j.label}</span>
+            <h2>${j.heading}</h2>
+            <p>${j.sub}</p>
+        </div>
+        <div class="timeline">${phaseHTML}</div>
+    `;
+}
+
+function renderProjectsShell() {
+    const root = document.getElementById('projects-root');
+    const p = CONTENT.projects;
+    root.innerHTML = `
+        <div class="sec-header reveal-up">
+            <span class="sec-label">${p.label}</span>
+            <h2>${p.heading}</h2>
+            <p>${p.sub}</p>
+        </div>
+        <div class="constellation-filters reveal-up">
+            ${p.filters.map((f, i) => `<button class="cf-btn${i === 0 ? ' active' : ''}" data-filter="${f.id}">${f.label}</button>`).join('')}
+        </div>
+        <div class="constellation-wrap">
+            <svg id="constellation-svg" viewBox="0 0 940 520" preserveAspectRatio="xMidYMid meet" aria-label="Project constellation map"></svg>
+            <div id="node-tooltip" class="node-tooltip"></div>
+        </div>
+        <div class="proj-mobile-grid" id="proj-mobile-grid"></div>
+    `;
+}
+
+function renderArsenal() {
+    const root = document.getElementById('arsenal-root');
+    const a = CONTENT.arsenal;
+    root.innerHTML = `
+        <div class="sec-header reveal-up">
+            <span class="sec-label">${a.label}</span>
+            <h2>${a.heading}</h2>
+            ${a.sub ? `<p>${a.sub}</p>` : ''}
+        </div>
+        <div class="arsenal-grid">
+            ${a.categories.map((cat, i) => `
+                <div class="arsenal-cat reveal-up" style="--d:${i}">
+                    <div class="acat-head">
+                        <div class="acat-icon">${ACAT_ICONS[cat.icon] || ''}</div>
+                        <h4>${cat.name}</h4>
+                    </div>
+                    <div class="skill-chips">
+                        ${cat.chips.map(c => `<span class="chip ${CHIP_CLASS[c.level] || 'chip--m'}">${c.label}</span>`).join('')}
+                    </div>
+                </div>`).join('')}
+        </div>
+        <div class="certs-row reveal-up">
+            <h4 class="certs-label">Certifications</h4>
+            <div class="certs-grid">
+                ${a.certs.map(c => `
+                    <div class="cert-card">
+                        <div class="cert-badge">${c.badge}</div>
+                        <div class="cert-info"><strong>${c.name}</strong></div>
+                    </div>`).join('')}
+            </div>
+        </div>
+    `;
+}
+
+function renderLife() {
+    const root = document.getElementById('life-root');
+    const l = CONTENT.life;
+    root.innerHTML = `
+        <div class="sec-header reveal-up">
+            <span class="sec-label">${l.label}</span>
+            <h2>${l.heading}</h2>
+            ${l.sub ? `<p>${l.sub}</p>` : ''}
+        </div>
+        <div class="life-grid">
+            ${l.cards.map((c, i) => `
+                <div class="life-card reveal-up" style="--i:${i}">
+                    <div class="lc-num">${String(i + 1).padStart(2, '0')}</div>
+                    <div class="lc-body">
+                        <h3>${c.title}</h3>
+                        <p>${c.text}</p>
+                    </div>
+                    <div class="lc-accent"></div>
+                </div>`).join('')}
+        </div>
+    `;
+}
+
+function renderConnect() {
+    const root = document.getElementById('connect-root');
+    const c = CONTENT.connect;
+    root.innerHTML = `
+        <span class="sec-label sec-label--amber">${c.label}</span>
+        <h2>${c.heading}</h2>
+        <p>${c.blurb}</p>
+        <a href="mailto:${CONTENT.identity.email}" class="connect-email">${CONTENT.identity.email}</a>
+        <div class="connect-socials">
+            ${CONTENT.socials.map(s => `
+                <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="soc-btn">
+                    ${ICONS[s.icon] || ''}
+                    ${s.name}
+                </a>`).join('')}
+        </div>
+        <div class="connect-extra">
+            ${c.extraLinks.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer" class="connect-link">${l.label}</a>`).join('')}
+        </div>
+    `;
+}
+
+function renderFooter() {
+    const root = document.getElementById('footer-root');
+    root.innerHTML = `
+        <div class="footer-brand">${CONTENT.identity.name} <span>aka ${CONTENT.identity.alias}</span></div>
+        <div class="footer-socials">
+            ${CONTENT.socials.map(s => `
+                <a href="${s.url}" target="_blank" rel="noopener noreferrer">${ICONS[s.icon] || ''}</a>`).join('')}
+        </div>
+        <p class="footer-copy">${CONTENT.footer.copy}</p>
+    `;
+}
+
+/* ============================================================
+   BEHAVIOR
+   ============================================================ */
+
 /* ===== PROGRESS BAR ===== */
 function initProgress() {
     const bar = document.getElementById('page-progress');
@@ -149,7 +388,7 @@ function initTypewriter() {
     const cursor = document.querySelector('.role-cursor');
     if (!el) return;
 
-    const roles = ['Data Engineer', 'Dashboard Builder', 'AI & GenAI Engineer', 'Venture Builder', 'Problem Solver'];
+    const roles = CONTENT.hero.roles;
     let ri = 0, ci = 0, del = false;
 
     function step() {
@@ -211,54 +450,6 @@ function initCounters() {
 }
 
 /* ===== PROJECT CONSTELLATION ===== */
-const NODES = [
-    // College era
-    { id: 'flappy',     name: 'Flappy Bird',          phase: 'college',      tags: ['cpp', 'gamedev'],                  x: 198, y: 118, link: 'https://github.com/theraghavgupta/flappybird',              desc: 'C++ & OpenGL game — full physics, sprites, collision. Built just to prove it could be done.' },
-    { id: 'sniffer',    name: 'Packet Sniffer',        phase: 'college',      tags: ['python', 'networking'],             x: 105, y: 235, desc: 'Python CLI that captures and decodes raw network packets in real time.' },
-    { id: 'blood',      name: 'Blood Bank',            phase: 'college',      tags: ['python', 'django', 'web'],          x: 228, y: 350, desc: 'Django web app managing blood inventory, donors, and hospital requests.' },
-    { id: 'sorting',    name: 'Sorting Visualizer',   phase: 'college',      tags: ['javascript', 'web'],                x: 348, y: 148, link: 'https://github.com/theraghavgupta/sorting-visualiser',       desc: 'Interactive visualization of 6+ sorting algorithms with speed controls.' },
-    { id: 'crypto',     name: 'Crypto Tracker',        phase: 'college',      tags: ['react', 'javascript', 'web'],       x: 395, y: 288, link: 'https://github.com/theraghavgupta/react-crypto-tracker',    desc: 'React app tracking 100+ crypto prices with live charts and market data.' },
-    { id: 'form',       name: 'Form Automator',        phase: 'college',      tags: ['python', 'selenium'],               x: 132, y: 398, link: 'https://github.com/theraghavgupta/formResponseAutomater',  desc: 'Selenium script to auto-fill and submit Google Forms from a CSV source.' },
-    { id: 'farming',    name: 'Precision Farming',     phase: 'college',      tags: ['python', 'ml'],                     x: 298, y: 455, desc: 'ML-based crop recommendation and yield prediction — B.E. Capstone project.' },
-    // Professional era
-    { id: 'lakehouse',  name: 'Analytics Lakehouse',     phase: 'professional', tags: ['azure', 'databricks', 'pyspark', 'data'], x: 598, y: 128, desc: 'The data architecture layer: Azure ADLS Gen2 + Databricks ingesting 10+ pharma source systems (IQVIA Xponent, DDD, LAAD, Veeva CRM, Copay, GPO…) into 65+ curated Delta tables. PySpark KPI pipelines compute Call Attainment, ADS, TOT in real time — the engine that makes the dashboards possible.' },
-    { id: 'dashboards', name: 'Commercial Dashboards',  phase: 'professional', tags: ['powerbi', 'tableau', 'data', 'web'], x: 742, y: 185, desc: 'Sales Insights, Market Analytics, HCP Engagement, Contract Pricing, Executive Reporting, Utilization & Recruitment — 20+ production dashboards delivered across 5+ US pharma clients for commercial leadership.' },
-    { id: 'mdm',        name: 'CRM & Data Governance',  phase: 'professional', tags: ['sql', 'snowflake', 'data'],          x: 548, y: 298, desc: 'The data governance layer: integrating 5+ US pharma CRM systems into a Snowflake data warehouse with master data management, QC validation frameworks, and SOX-compliant documentation trackers. Ensures the data going into the Lakehouse is accurate and trusted.' },
-    { id: 'agents',     name: 'Databricks AI Agents',   phase: 'professional', tags: ['databricks', 'langchain', 'genai', 'ai', 'python', 'azure'], x: 762, y: 248, desc: 'Building Databricks-native AI agents with multi-agent workflows using LangChain and Databricks Genie — production-grade agentic AI for pharma analytics and intelligent data querying.' },
-    { id: 'rag',        name: 'RAG Chatbot',             phase: 'professional', tags: ['genai', 'python', 'azure', 'ai'],   x: 870, y: 148, desc: 'RAG-based chatbot on Azure for pharma literature search — semantic chunking, vector store retrieval, and LLM answer synthesis over medical research documents.' },
-    { id: 'summarizer', name: 'Article Summarizer',     phase: 'professional', tags: ['genai', 'python', 'ai'],            x: 868, y: 318, desc: 'LLM-powered summarization of pharma research articles and clinical trial data, enabling field teams to extract insights from dense scientific literature instantly.' },
-    { id: 'fabric',     name: 'PowerBI-Copilot',         phase: 'professional', tags: ['genai', 'powerbi', 'fabric', 'ai'], x: 668, y: 418, desc: 'PowerBI Copilot integration in Microsoft Fabric — natural language querying over commercial pharma dashboards for leadership teams. First GenAI-in-BI PoC at the firm.' },
-];
-
-const EDGES = [
-    // College internal
-    { a: 'sniffer',   b: 'blood',      type: 'python', cross: false },
-    { a: 'sniffer',   b: 'form',       type: 'python', cross: false },
-    { a: 'blood',     b: 'form',       type: 'python', cross: false },
-    { a: 'blood',     b: 'farming',    type: 'python', cross: false },
-    { a: 'sorting',   b: 'crypto',     type: 'web',    cross: false },
-    { a: 'flappy',    b: 'sniffer',    type: 'college', cross: false },
-    { a: 'flappy',    b: 'sorting',    type: 'college', cross: false },
-    // Professional internal — data layer
-    { a: 'lakehouse',  b: 'dashboards', type: 'data',   cross: false },
-    { a: 'lakehouse',  b: 'mdm',        type: 'data',   cross: false },
-    { a: 'dashboards', b: 'mdm',        type: 'data',   cross: false },
-    { a: 'dashboards', b: 'fabric',     type: 'data',   cross: false },
-    // Professional internal — AI layer
-    { a: 'agents',     b: 'rag',        type: 'ai',     cross: false },
-    { a: 'agents',     b: 'summarizer', type: 'ai',     cross: false },
-    { a: 'agents',     b: 'fabric',     type: 'ai',     cross: false },
-    { a: 'agents',     b: 'lakehouse',  type: 'azure',  cross: false },
-    { a: 'rag',        b: 'summarizer', type: 'ai',     cross: false },
-    { a: 'rag',        b: 'fabric',     type: 'ai',     cross: false },
-    { a: 'summarizer', b: 'fabric',     type: 'ai',     cross: false },
-    // Cross-phase bridges
-    { a: 'farming',  b: 'lakehouse',  type: 'data',   cross: true },
-    { a: 'form',     b: 'agents',     type: 'python', cross: true },
-    { a: 'crypto',   b: 'dashboards', type: 'web',    cross: true },
-    { a: 'sniffer',  b: 'rag',        type: 'python', cross: true },
-];
-
 const EDGE_COLORS = {
     python:  '#e63946',
     web:     '#4cc9f0',
@@ -268,15 +459,14 @@ const EDGE_COLORS = {
     college: '#8888aa',
 };
 
-const FILTER_MAP = {
-    all:          () => true,
-    college:      n => n.phase === 'college',
-    professional: n => n.phase === 'professional',
-    python:       n => n.tags.includes('python'),
-    data:         n => n.tags.includes('data'),
-    web:          n => n.tags.includes('web'),
-    ai:           n => n.tags.includes('ai') || n.tags.includes('genai') || n.tags.includes('langchain'),
-};
+// Builds a node-matching predicate from a filter definition in content.js
+function filterTest(filterId) {
+    const f = CONTENT.projects.filters.find(x => x.id === filterId);
+    if (!f || f.id === 'all') return () => true;
+    if (f.phase) return n => n.phase === f.phase;
+    if (f.match) return n => f.match.some(t => n.tags.includes(t));
+    return () => true;
+}
 
 function svgEl(tag) {
     return document.createElementNS('http://www.w3.org/2000/svg', tag);
@@ -285,6 +475,9 @@ function svgEl(tag) {
 function initConstellation() {
     const svg = document.getElementById('constellation-svg');
     if (!svg) return;
+
+    const NODES = CONTENT.projects.nodes;
+    const EDGES = CONTENT.projects.edges;
 
     // Defs + glow filter
     const defs = svgEl('defs');
@@ -315,12 +508,8 @@ function initConstellation() {
     bg.setAttribute('fill', 'url(#grid)');
     svg.appendChild(bg);
 
-    // Era labels
-    const labelData = [
-        { text: 'COLLEGE ERA  ·  2019–2023', x: 220, y: 36 },
-        { text: 'PROFESSIONAL ERA  ·  2022–NOW', x: 680, y: 36 },
-    ];
-    labelData.forEach(({ text, x, y }) => {
+    // Era labels (from content.js)
+    CONTENT.projects.eras.forEach(({ text, x, y }) => {
         const t = svgEl('text');
         t.setAttribute('x', x); t.setAttribute('y', y);
         t.setAttribute('text-anchor', 'middle');
@@ -394,7 +583,7 @@ function initConstellation() {
 
         const tooltip = document.getElementById('node-tooltip');
 
-        g.addEventListener('mouseenter', evt => {
+        g.addEventListener('mouseenter', () => {
             const phaseLabel = node.phase === 'college' ? 'COLLEGE ERA' : 'PROFESSIONAL';
             const phaseClass = node.phase === 'college' ? 'tt-phase--college' : 'tt-phase--professional';
             tooltip.innerHTML = `
@@ -408,13 +597,12 @@ function initConstellation() {
         });
 
         g.addEventListener('mousemove', evt => {
-            const tt = tooltip;
             let x = evt.clientX + 18;
             let y = evt.clientY - 12;
             if (x + 250 > window.innerWidth) x = evt.clientX - 258;
             if (y + 180 > window.innerHeight) y = evt.clientY - 160;
-            tt.style.left = x + 'px';
-            tt.style.top = y + 'px';
+            tooltip.style.left = x + 'px';
+            tooltip.style.top = y + 'px';
         });
 
         g.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
@@ -434,13 +622,15 @@ function initConstellationFilters() {
     const svg = document.getElementById('constellation-svg');
     if (!svg) return;
 
+    const NODES = CONTENT.projects.nodes;
+
     btns.forEach(btn => {
         btn.addEventListener('click', () => {
             btns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
             const filter = btn.dataset.filter;
-            const test = FILTER_MAP[filter] || (() => true);
+            const test = filterTest(filter);
 
             const nodes = svg.querySelectorAll('.c-node');
             const edges = svg.querySelectorAll('.c-edge');
@@ -474,10 +664,13 @@ function initMobileGrid() {
     const container = document.getElementById('proj-mobile-grid');
     if (!container) return;
 
+    const NODES = CONTENT.projects.nodes;
+
     NODES.forEach(node => {
         const card = document.createElement(node.link ? 'a' : 'div');
         card.className = 'pmg-card';
         if (node.link) { card.href = node.link; card.target = '_blank'; card.rel = 'noopener noreferrer'; }
+        card.dataset.id = node.id;
         card.dataset.phase = node.phase;
         card.dataset.tags = node.tags.join(' ');
 
@@ -491,17 +684,13 @@ function initMobileGrid() {
         container.appendChild(card);
     });
 
-    // Wire up filter buttons to also filter the mobile grid
+    // Filter buttons also filter the mobile grid
     document.querySelectorAll('.cf-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            const filter = btn.dataset.filter;
-            const test = FILTER_MAP[filter] || (() => true);
-
+            const test = filterTest(btn.dataset.filter);
             container.querySelectorAll('.pmg-card').forEach(card => {
-                const id = [...NODES].find(n => card.querySelector('.pmg-name').textContent === n.name)?.id;
-                const node = NODES.find(n => n.name === card.querySelector('.pmg-name').textContent);
-                const match = node && test(node);
-                card.style.display = match ? '' : 'none';
+                const node = NODES.find(n => n.id === card.dataset.id);
+                card.style.display = (node && test(node)) ? '' : 'none';
             });
         });
     });
@@ -509,6 +698,17 @@ function initMobileGrid() {
 
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Render all content from content.js
+    renderHero();
+    renderAbout();
+    renderJourney();
+    renderProjectsShell();
+    renderArsenal();
+    renderLife();
+    renderConnect();
+    renderFooter();
+
+    // 2. Wire up behavior on the rendered DOM
     initProgress();
     initHeader();
     initActiveNav();
