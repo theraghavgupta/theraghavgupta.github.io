@@ -4,6 +4,9 @@
    js/content.js. Edit this only to change how the site WORKS.
    ============================================================ */
 
+const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER   = window.matchMedia('(pointer: fine)').matches;
+
 /* ===== ICON LIBRARY (referenced by name from content.js) ===== */
 const ICONS = {
     github:    '<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>',
@@ -13,10 +16,17 @@ const ICONS = {
     twitter:   '<svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/></svg>',
 };
 
+const SVG_ATTR = 'width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
 const ACAT_ICONS = {
-    grid: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
-    code: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
-    ai:   '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>',
+    grid:   `<svg ${SVG_ATTR}><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`,
+    code:   `<svg ${SVG_ATTR}><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+    ai:     `<svg ${SVG_ATTR}><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>`,
+    shield: `<svg ${SVG_ATTR}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>`,
+    music:  `<svg ${SVG_ATTR}><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
+    bike:   `<svg ${SVG_ATTR}><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg>`,
+    glass:  `<svg ${SVG_ATTR}><path d="M5 3h14l-7 9z"/><path d="M12 12v9"/><path d="M8 21h8"/></svg>`,
+    film:   `<svg ${SVG_ATTR}><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M7 3v18M17 3v18M2 9h5M2 15h5M17 9h5M17 15h5"/></svg>`,
+    car:    `<svg ${SVG_ATTR}><path d="M5 17H3v-5l2-5h14l2 5v5h-2"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M5 12h14"/></svg>`,
 };
 
 const CHIP_CLASS = { daily: 'chip--e', solid: 'chip--a', used: 'chip--m' };
@@ -36,15 +46,19 @@ function renderHero() {
             <span class="name-part" style="--d:1">${rest.join(' ')}</span>
         </h1>
         <div class="hero-role">
-            <span class="role-prefix">I'm a&nbsp;</span>
-            <span id="role-text" class="role-text"></span><span class="role-cursor">|</span>
+            <span class="role-prefix">${h.subtitlePrefix}</span><span id="role-text" class="role-text"></span><span class="role-cursor">|</span>
         </div>
+        <blockquote class="hero-quote">
+            ${h.quote.map(l => `<span>${l}</span>`).join('')}
+        </blockquote>
         <p class="hero-tagline">${h.tagline.replace(/\n/g, '<br>')}</p>
         <div class="hero-actions">
-            <a href="${h.ctaPrimary.href}" class="btn-primary">${h.ctaPrimary.label}</a>
-            <a href="${h.ctaGhost.href}" class="btn-ghost">${h.ctaGhost.label}</a>
+            <a href="${h.ctaPrimary.href}" class="btn-primary magnetic">${h.ctaPrimary.label}</a>
+            <a href="${h.ctaGhost.href}" class="btn-ghost magnetic">${h.ctaGhost.label}</a>
         </div>
     `;
+    const cue = document.querySelector('.hero-scroll span');
+    if (cue && h.scrollCue) cue.textContent = h.scrollCue;
 }
 
 function renderAbout() {
@@ -68,10 +82,33 @@ function renderAbout() {
         <div class="about-text reveal-right">
             <span class="sec-label">${a.label}</span>
             <h2>${a.heading}</h2>
-            ${a.paragraphs.map(p => `<p>${p}</p>`).join('')}
-            <div class="tag-list">
-                ${a.pills.map(p => `<span class="pill">${p}</span>`).join('')}
+
+            <div class="about-block">
+                <h3 class="about-sublabel">${a.shortVersionLabel}</h3>
+                ${a.shortVersion.map(p => `<p>${p}</p>`).join('')}
             </div>
+
+            <div class="about-block">
+                <h3 class="about-sublabel">${a.honestLabel}</h3>
+                ${a.honest.map(p => `<p>${p}</p>`).join('')}
+            </div>
+
+            <div class="about-block">
+                <h3 class="about-sublabel">${a.principlesLabel}</h3>
+                <ol class="about-principles">
+                    ${a.principles.map(p => `
+                        <li>
+                            <strong>${p.lead}</strong>
+                            <span>${p.text}</span>
+                        </li>`).join('')}
+                </ol>
+            </div>
+
+            ${a.pills && a.pills.length ? `
+                <div class="tag-list">
+                    ${a.pills.map(p => `<span class="pill">${p}</span>`).join('')}
+                </div>` : ''}
+
             <p class="about-contact">
                 <a href="mailto:${CONTENT.identity.email}">${CONTENT.identity.email}</a>
                 <span class="dot">&nbsp;&middot;&nbsp;</span>${CONTENT.identity.location}
@@ -92,7 +129,7 @@ function renderJourney() {
             <div class="tl-body">
                 <div class="phase-tag${ph.tagStyle ? ' phase-tag--' + ph.tagStyle : ''}">${ph.tag}</div>
                 <h3>${ph.title}</h3>
-                <p class="tl-period">${ph.period}</p>
+                ${ph.period ? `<p class="tl-period">${ph.period}</p>` : ''}
                 ${ph.location ? `<p class="tl-location">${ph.location}</p>` : ''}
                 <p class="tl-desc">${ph.desc}</p>
                 ${ph.projects ? `
@@ -101,7 +138,7 @@ function renderJourney() {
                             const tag = pr.link ? 'a' : 'div';
                             const attrs = pr.link ? ` href="${pr.link}" target="_blank" rel="noopener noreferrer"` : '';
                             return `<${tag} class="tl-proj"${attrs}>
-                                <img src="${pr.img}" alt="${pr.name}">
+                                <img src="${pr.img}" alt="${pr.name}" loading="lazy">
                                 <div class="tl-proj-info">
                                     <strong>${pr.name}</strong>
                                     <span>${pr.sub}</span>
@@ -126,6 +163,7 @@ function renderJourney() {
 function renderProjectsShell() {
     const root = document.getElementById('projects-root');
     const p = CONTENT.projects;
+    const vb = p.viewBox;
     root.innerHTML = `
         <div class="sec-header reveal-up">
             <span class="sec-label">${p.label}</span>
@@ -136,7 +174,8 @@ function renderProjectsShell() {
             ${p.filters.map((f, i) => `<button class="cf-btn${i === 0 ? ' active' : ''}" data-filter="${f.id}">${f.label}</button>`).join('')}
         </div>
         <div class="constellation-wrap">
-            <svg id="constellation-svg" viewBox="0 0 940 520" preserveAspectRatio="xMidYMid meet" aria-label="Project constellation map"></svg>
+            <div class="c-cursor-glow" id="c-cursor-glow"></div>
+            <svg id="constellation-svg" viewBox="0 0 ${vb.w} ${vb.h}" preserveAspectRatio="xMidYMid meet" aria-label="Project constellation map"></svg>
             <div id="node-tooltip" class="node-tooltip"></div>
         </div>
         <div class="proj-mobile-grid" id="proj-mobile-grid"></div>
@@ -154,14 +193,17 @@ function renderArsenal() {
         </div>
         <div class="arsenal-grid">
             ${a.categories.map((cat, i) => `
-                <div class="arsenal-cat reveal-up" style="--d:${i}">
+                <div class="arsenal-cat reveal-up${cat.prose ? ' arsenal-cat--prose' : ''}" style="--d:${i}">
                     <div class="acat-head">
                         <div class="acat-icon">${ACAT_ICONS[cat.icon] || ''}</div>
                         <h4>${cat.name}</h4>
                     </div>
-                    <div class="skill-chips">
-                        ${cat.chips.map(c => `<span class="chip ${CHIP_CLASS[c.level] || 'chip--m'}">${c.label}</span>`).join('')}
-                    </div>
+                    ${cat.chips ? `
+                        <div class="skill-chips">
+                            ${cat.chips.map(c => `<span class="chip ${CHIP_CLASS[c.level] || 'chip--m'}">${c.label}</span>`).join('')}
+                        </div>` : ''}
+                    ${cat.prose ? `<p class="acat-prose">${cat.prose}</p>` : ''}
+                    ${cat.quote ? `<p class="acat-quote">${cat.quote}</p>` : ''}
                 </div>`).join('')}
         </div>
         <div class="certs-row reveal-up">
@@ -188,7 +230,7 @@ function renderLife() {
         </div>
         <div class="life-grid">
             ${l.cards.map((c, i) => `
-                <div class="life-card reveal-up" style="--i:${i}">
+                <div class="life-card reveal-up tilt" style="--i:${i}">
                     <div class="lc-num">${String(i + 1).padStart(2, '0')}</div>
                     <div class="lc-body">
                         <h3>${c.title}</h3>
@@ -197,6 +239,19 @@ function renderLife() {
                     <div class="lc-accent"></div>
                 </div>`).join('')}
         </div>
+        ${l.currently ? `
+            <div class="life-now reveal-up">
+                <div class="now-head">
+                    <span class="now-dot"></span>${l.currentlyLabel}${l.currentlyUpdated ? ` · ${l.currentlyUpdated}` : ''}
+                </div>
+                <dl class="now-list">
+                    ${l.currently.map(c => `
+                        <div class="now-row">
+                            <dt>${c.label}</dt>
+                            <dd>${c.text}</dd>
+                        </div>`).join('')}
+                </dl>
+            </div>` : ''}
     `;
 }
 
@@ -207,10 +262,11 @@ function renderConnect() {
         <span class="sec-label sec-label--amber">${c.label}</span>
         <h2>${c.heading}</h2>
         <p>${c.blurb}</p>
+        ${c.hiring ? `<p class="connect-hiring">${c.hiring}</p>` : ''}
         <a href="mailto:${CONTENT.identity.email}" class="connect-email">${CONTENT.identity.email}</a>
         <div class="connect-socials">
             ${CONTENT.socials.map(s => `
-                <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="soc-btn">
+                <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="soc-btn magnetic">
                     ${ICONS[s.icon] || ''}
                     ${s.name}
                 </a>`).join('')}
@@ -223,19 +279,45 @@ function renderConnect() {
 
 function renderFooter() {
     const root = document.getElementById('footer-root');
+    const f = CONTENT.footer;
     root.innerHTML = `
         <div class="footer-brand">${CONTENT.identity.name} <span>aka ${CONTENT.identity.alias}</span></div>
+        ${f.tagline ? `<p class="footer-tagline">${f.tagline}</p>` : ''}
         <div class="footer-socials">
             ${CONTENT.socials.map(s => `
-                <a href="${s.url}" target="_blank" rel="noopener noreferrer">${ICONS[s.icon] || ''}</a>`).join('')}
+                <a href="${s.url}" target="_blank" rel="noopener noreferrer" aria-label="${s.name}">${ICONS[s.icon] || ''}</a>`).join('')}
         </div>
-        <p class="footer-copy">${CONTENT.footer.copy}</p>
+        <p class="footer-copy">${f.copy}</p>
     `;
 }
 
 /* ============================================================
    BEHAVIOR
    ============================================================ */
+
+/* ===== ENTRY SEQUENCE ===== */
+function initEntry() {
+    const veil = document.getElementById('entry-veil');
+    if (!veil) return;
+
+    let seen = false;
+    try { seen = sessionStorage.getItem('and0-seen') === '1'; } catch (e) { /* private mode */ }
+
+    if (seen || REDUCED_MOTION) {
+        veil.remove();
+        document.body.classList.remove('booting');
+        return;
+    }
+
+    veil.querySelector('.entry-mark').textContent = CONTENT.identity.alias;
+    try { sessionStorage.setItem('and0-seen', '1'); } catch (e) { /* ignore */ }
+
+    setTimeout(() => {
+        veil.classList.add('done');
+        document.body.classList.remove('booting');
+        setTimeout(() => veil.remove(), 700);
+    }, 1100);
+}
 
 /* ===== PROGRESS BAR ===== */
 function initProgress() {
@@ -294,9 +376,10 @@ function initHeroCanvas() {
     const canvas = document.getElementById('hero-canvas');
     const ctx = canvas.getContext('2d');
     let W, H, particles;
-    const COUNT = 70;
+    const COUNT = REDUCED_MOTION ? 34 : 70;
     const MAX_DIST = 130;
     let mouse = { x: null, y: null };
+    let running = true;
 
     function resize() {
         W = canvas.width = window.innerWidth;
@@ -316,21 +399,28 @@ function initHeroCanvas() {
     window.addEventListener('resize', resize, { passive: true });
     resize();
 
+    // Stop drawing once the hero has scrolled away — saves battery on long pages.
+    const heroObs = new IntersectionObserver(e => {
+        running = e[0].isIntersecting;
+        if (running) tick();
+    }, { threshold: 0 });
+    heroObs.observe(document.getElementById('home'));
+
     window.addEventListener('mousemove', e => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
     }, { passive: true });
 
     function tick() {
+        if (!running) return;
         ctx.clearRect(0, 0, W, H);
 
         particles.forEach(p => {
-            // Mouse repulsion
-            if (mouse.x !== null) {
+            if (mouse.x !== null && !REDUCED_MOTION) {
                 const dx = p.x - mouse.x;
                 const dy = p.y - mouse.y;
                 const d = Math.sqrt(dx * dx + dy * dy);
-                if (d < 90) {
+                if (d < 90 && d > 0) {
                     p.vx += (dx / d) * 0.025;
                     p.vy += (dy / d) * 0.025;
                 }
@@ -350,7 +440,6 @@ function initHeroCanvas() {
             if (p.y > H) p.y = 0;
         });
 
-        // Edges
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -368,7 +457,6 @@ function initHeroCanvas() {
             }
         }
 
-        // Dots
         particles.forEach(p => {
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -389,6 +477,9 @@ function initTypewriter() {
     if (!el) return;
 
     const roles = CONTENT.hero.roles;
+
+    if (REDUCED_MOTION) { el.textContent = roles[0]; return; }
+
     let ri = 0, ci = 0, del = false;
 
     function step() {
@@ -396,11 +487,11 @@ function initTypewriter() {
         if (!del) {
             el.textContent = word.slice(0, ++ci);
             if (ci === word.length) { del = true; return setTimeout(step, 2200); }
-            setTimeout(step, 58);
+            setTimeout(step, 45);
         } else {
             el.textContent = word.slice(0, --ci);
             if (ci === 0) { del = false; ri = (ri + 1) % roles.length; return setTimeout(step, 380); }
-            setTimeout(step, 30);
+            setTimeout(step, 22);
         }
     }
 
@@ -430,6 +521,9 @@ function initCounters() {
             if (!e.isIntersecting) return;
             const el = e.target;
             const target = parseInt(el.dataset.to);
+
+            if (REDUCED_MOTION) { el.textContent = target; obs.unobserve(el); return; }
+
             const dur = 1400;
             const fps = 60;
             const frames = dur / (1000 / fps);
@@ -457,6 +551,7 @@ const EDGE_COLORS = {
     ai:      '#ff9b24',
     azure:   '#4cc9f0',
     college: '#8888aa',
+    fun:     '#a78bfa',
 };
 
 // Builds a node-matching predicate from a filter definition in content.js
@@ -472,14 +567,34 @@ function svgEl(tag) {
     return document.createElementNS('http://www.w3.org/2000/svg', tag);
 }
 
+// Node circle radius (kept in one place — edges are trimmed against it)
+function nodeRadius(node) {
+    return node.phase === 'college' ? 14 : 16;
+}
+
+// Pull an edge's endpoints back to the rim of each circle so lines never
+// run through the translucent node fill.
+function trimEdge(x1, y1, x2, y2, r1, r2) {
+    const dx = x2 - x1, dy = y2 - y1;
+    const d = Math.hypot(dx, dy) || 1;
+    const ux = dx / d, uy = dy / d;
+    const GAP = 3;
+    return [
+        x1 + ux * (r1 + GAP), y1 + uy * (r1 + GAP),
+        x2 - ux * (r2 + GAP), y2 - uy * (r2 + GAP),
+    ];
+}
+
 function initConstellation() {
     const svg = document.getElementById('constellation-svg');
     if (!svg) return;
 
-    const NODES = CONTENT.projects.nodes;
-    const EDGES = CONTENT.projects.edges;
+    const P = CONTENT.projects;
+    const NODES = P.nodes;
+    const EDGES = P.edges;
+    const VB = P.viewBox;
 
-    // Defs + glow filter
+    /* --- defs: glow filter + grid --- */
     const defs = svgEl('defs');
     const filt = svgEl('filter');
     filt.setAttribute('id', 'glow');
@@ -495,21 +610,24 @@ function initConstellation() {
     defs.appendChild(filt);
     svg.appendChild(defs);
 
-    // Subtle grid background
     const gridPat = svgEl('pattern');
     gridPat.setAttribute('id', 'grid'); gridPat.setAttribute('width', '40'); gridPat.setAttribute('height', '40');
     gridPat.setAttribute('patternUnits', 'userSpaceOnUse');
-    const gLine1 = svgEl('path'); gLine1.setAttribute('d', 'M 40 0 L 0 0 0 40'); gLine1.setAttribute('fill', 'none'); gLine1.setAttribute('stroke', 'rgba(255,255,255,0.025)'); gLine1.setAttribute('stroke-width', '0.5');
+    const gLine1 = svgEl('path');
+    gLine1.setAttribute('d', 'M 40 0 L 0 0 0 40');
+    gLine1.setAttribute('fill', 'none');
+    gLine1.setAttribute('stroke', 'rgba(255,255,255,0.025)');
+    gLine1.setAttribute('stroke-width', '0.5');
     gridPat.appendChild(gLine1);
     defs.appendChild(gridPat);
 
     const bg = svgEl('rect');
-    bg.setAttribute('width', '940'); bg.setAttribute('height', '520');
+    bg.setAttribute('width', VB.w); bg.setAttribute('height', VB.h);
     bg.setAttribute('fill', 'url(#grid)');
     svg.appendChild(bg);
 
-    // Era labels (from content.js)
-    CONTENT.projects.eras.forEach(({ text, x, y }) => {
+    /* --- era labels --- */
+    P.eras.forEach(({ text, x, y }) => {
         const t = svgEl('text');
         t.setAttribute('x', x); t.setAttribute('y', y);
         t.setAttribute('text-anchor', 'middle');
@@ -518,48 +636,65 @@ function initConstellation() {
         svg.appendChild(t);
     });
 
-    // Divider
-    const div = svgEl('line');
-    div.setAttribute('x1', '470'); div.setAttribute('y1', '50');
-    div.setAttribute('x2', '470'); div.setAttribute('y2', '490');
-    div.setAttribute('stroke', 'rgba(255,255,255,0.06)');
-    div.setAttribute('stroke-width', '1');
-    div.setAttribute('stroke-dasharray', '4 10');
-    svg.appendChild(div);
+    /* --- cluster dividers --- */
+    P.dividers.forEach(d => {
+        const line = svgEl('line');
+        line.setAttribute('x1', d.x1); line.setAttribute('y1', d.y1);
+        line.setAttribute('x2', d.x2); line.setAttribute('y2', d.y2);
+        line.setAttribute('class', 'c-divider');
+        svg.appendChild(line);
+    });
 
-    // Edge group (behind nodes)
+    /* --- adjacency, used for hover focus --- */
+    const neighbours = {};
+    NODES.forEach(n => { neighbours[n.id] = new Set(); });
+    EDGES.forEach(e => {
+        if (neighbours[e.a] && neighbours[e.b]) {
+            neighbours[e.a].add(e.b);
+            neighbours[e.b].add(e.a);
+        }
+    });
+
+    /* --- edges (behind nodes) --- */
     const edgeG = svgEl('g');
     edgeG.setAttribute('class', 'edges-group');
     svg.appendChild(edgeG);
 
+    const edgeEls = [];
     EDGES.forEach(edge => {
         const src = NODES.find(n => n.id === edge.a);
         const tgt = NODES.find(n => n.id === edge.b);
         if (!src || !tgt) return;
 
         const line = svgEl('line');
-        line.setAttribute('x1', src.x); line.setAttribute('y1', src.y);
-        line.setAttribute('x2', tgt.x); line.setAttribute('y2', tgt.y);
+        const [tx1, ty1, tx2, ty2] = trimEdge(src.x, src.y, tgt.x, tgt.y, nodeRadius(src), nodeRadius(tgt));
+        line.setAttribute('x1', tx1); line.setAttribute('y1', ty1);
+        line.setAttribute('x2', tx2); line.setAttribute('y2', ty2);
         line.setAttribute('stroke', EDGE_COLORS[edge.type] || '#888');
         line.setAttribute('class', `c-edge${edge.cross ? ' c-edge--cross' : ''}`);
         line.dataset.a = edge.a;
         line.dataset.b = edge.b;
         line.dataset.type = edge.type;
         edgeG.appendChild(line);
+        edgeEls.push({ line, src, tgt, a: edge.a, b: edge.b, r1: nodeRadius(src), r2: nodeRadius(tgt) });
     });
 
-    // Node group
+    /* --- nodes --- */
     const nodeG = svgEl('g');
     nodeG.setAttribute('class', 'nodes-group');
     svg.appendChild(nodeG);
 
-    NODES.forEach(node => {
+    const tooltip = document.getElementById('node-tooltip');
+    const nodeEls = [];
+
+    NODES.forEach((node, i) => {
         const g = svgEl('g');
         g.setAttribute('class', `c-node c-node--${node.phase}`);
         g.setAttribute('data-id', node.id);
         g.setAttribute('data-phase', node.phase);
         g.setAttribute('data-tags', node.tags.join(' '));
         g.setAttribute('transform', `translate(${node.x},${node.y})`);
+        g.style.setProperty('--i', i);
 
         const glow = svgEl('circle');
         glow.setAttribute('r', '30');
@@ -567,45 +702,57 @@ function initConstellation() {
         g.appendChild(glow);
 
         const circle = svgEl('circle');
-        circle.setAttribute('r', node.phase === 'professional' ? '16' : '14');
+        circle.setAttribute('r', nodeRadius(node));
         circle.setAttribute('class', 'c-node-circle');
         g.appendChild(circle);
 
-        // Short label (max ~16 chars)
-        const short = node.name.length > 16 ? node.name.slice(0, 15) + '…' : node.name;
+        const short = node.name.length > 22 ? node.name.slice(0, 21) + '…' : node.name;
         const lbl = svgEl('text');
-        lbl.setAttribute('y', node.phase === 'professional' ? '34' : '31');
+        lbl.setAttribute('y', node.phase === 'college' ? '31' : '34');
         lbl.setAttribute('text-anchor', 'middle');
         lbl.setAttribute('class', 'c-node-label');
         lbl.setAttribute('font-family', 'Inter, sans-serif');
         lbl.textContent = short;
         g.appendChild(lbl);
 
-        const tooltip = document.getElementById('node-tooltip');
-
+        /* hover: focus this node + its neighbours, fade the rest */
         g.addEventListener('mouseenter', () => {
-            const phaseLabel = node.phase === 'college' ? 'COLLEGE ERA' : 'PROFESSIONAL';
-            const phaseClass = node.phase === 'college' ? 'tt-phase--college' : 'tt-phase--professional';
+            const label = P.phaseLabels[node.phase] || node.phase.toUpperCase();
             tooltip.innerHTML = `
-                <div class="tt-phase ${phaseClass}">${phaseLabel}</div>
+                <div class="tt-phase tt-phase--${node.phase}">${label}</div>
                 <div class="tt-name">${node.name}</div>
                 <div class="tt-tags">${node.tags.map(t => `<span>${t}</span>`).join('')}</div>
                 <div class="tt-desc">${node.desc}</div>
                 ${node.link ? '<div class="tt-link">Click to open ↗</div>' : ''}
             `;
             tooltip.classList.add('visible');
+
+            svg.classList.add('has-focus');
+            const near = neighbours[node.id];
+            nodeEls.forEach(({ g: og, node: on }) => {
+                og.classList.toggle('focused', on.id === node.id);
+                og.classList.toggle('neighbour', near.has(on.id));
+            });
+            edgeEls.forEach(({ line, a, b }) => {
+                line.classList.toggle('active', a === node.id || b === node.id);
+            });
         });
 
         g.addEventListener('mousemove', evt => {
             let x = evt.clientX + 18;
             let y = evt.clientY - 12;
-            if (x + 250 > window.innerWidth) x = evt.clientX - 258;
-            if (y + 180 > window.innerHeight) y = evt.clientY - 160;
+            if (x + 300 > window.innerWidth) x = evt.clientX - 308;
+            if (y + 220 > window.innerHeight) y = Math.max(12, evt.clientY - 200);
             tooltip.style.left = x + 'px';
             tooltip.style.top = y + 'px';
         });
 
-        g.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+        g.addEventListener('mouseleave', () => {
+            tooltip.classList.remove('visible');
+            svg.classList.remove('has-focus');
+            nodeEls.forEach(({ g: og }) => og.classList.remove('focused', 'neighbour'));
+            edgeEls.forEach(({ line }) => line.classList.remove('active'));
+        });
 
         if (node.link) {
             g.style.cursor = 'pointer';
@@ -613,7 +760,60 @@ function initConstellation() {
         }
 
         nodeG.appendChild(g);
+        nodeEls.push({
+            g, node,
+            px: Math.random() * Math.PI * 2,   // drift phase
+            py: Math.random() * Math.PI * 2,
+            sx: 0.55 + Math.random() * 0.5,    // drift speed
+            sy: 0.55 + Math.random() * 0.5,
+        });
     });
+
+    /* --- staggered entrance when the map scrolls into view --- */
+    const wrap = svg.closest('.constellation-wrap');
+    const revealObs = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) return;
+        svg.classList.add('c-revealed');
+        revealObs.disconnect();
+    }, { threshold: 0.12 });
+    revealObs.observe(wrap);
+
+    /* --- idle drift: one shared rAF, paused when off-screen --- */
+    if (REDUCED_MOTION) return;
+
+    let visible = false;
+    const driftObs = new IntersectionObserver(entries => {
+        visible = entries[0].isIntersecting;
+        if (visible) requestAnimationFrame(drift);
+    }, { threshold: 0 });
+    driftObs.observe(wrap);
+
+    const AMP = 3.2;
+    const start = performance.now();
+
+    function drift(now) {
+        if (!visible) return;
+        const t = (now - start) / 1000;
+
+        nodeEls.forEach(n => {
+            n.dx = Math.sin(t * n.sx + n.px) * AMP;
+            n.dy = Math.cos(t * n.sy + n.py) * AMP;
+            n.g.setAttribute('transform', `translate(${n.node.x + n.dx},${n.node.y + n.dy})`);
+        });
+
+        const pos = {};
+        nodeEls.forEach(n => { pos[n.node.id] = [n.node.x + n.dx, n.node.y + n.dy]; });
+
+        edgeEls.forEach(e => {
+            const p1 = pos[e.a], p2 = pos[e.b];
+            if (!p1 || !p2) return;
+            const [x1, y1, x2, y2] = trimEdge(p1[0], p1[1], p2[0], p2[1], e.r1, e.r2);
+            e.line.setAttribute('x1', x1); e.line.setAttribute('y1', y1);
+            e.line.setAttribute('x2', x2); e.line.setAttribute('y2', y2);
+        });
+
+        requestAnimationFrame(drift);
+    }
 }
 
 /* ===== CONSTELLATION FILTERS ===== */
@@ -659,12 +859,28 @@ function initConstellationFilters() {
     });
 }
 
+/* ===== CURSOR GLOW INSIDE THE MAP ===== */
+function initCursorGlow() {
+    const wrap = document.querySelector('.constellation-wrap');
+    const glow = document.getElementById('c-cursor-glow');
+    if (!wrap || !glow || !FINE_POINTER || REDUCED_MOTION) return;
+
+    wrap.addEventListener('mousemove', e => {
+        const r = wrap.getBoundingClientRect();
+        glow.style.transform = `translate(${e.clientX - r.left}px, ${e.clientY - r.top}px)`;
+    }, { passive: true });
+
+    wrap.addEventListener('mouseenter', () => glow.classList.add('on'));
+    wrap.addEventListener('mouseleave', () => glow.classList.remove('on'));
+}
+
 /* ===== MOBILE PROJECT GRID ===== */
 function initMobileGrid() {
     const container = document.getElementById('proj-mobile-grid');
     if (!container) return;
 
-    const NODES = CONTENT.projects.nodes;
+    const P = CONTENT.projects;
+    const NODES = P.nodes;
 
     NODES.forEach(node => {
         const card = document.createElement(node.link ? 'a' : 'div');
@@ -674,8 +890,9 @@ function initMobileGrid() {
         card.dataset.phase = node.phase;
         card.dataset.tags = node.tags.join(' ');
 
+        const label = P.phaseLabels[node.phase] || node.phase.toUpperCase();
         card.innerHTML = `
-            <div class="pmg-phase pmg-phase--${node.phase}">${node.phase === 'college' ? 'COLLEGE ERA' : 'PROFESSIONAL'}</div>
+            <div class="pmg-phase pmg-phase--${node.phase}">${label}</div>
             <div class="pmg-name">${node.name}</div>
             <div class="pmg-desc">${node.desc}</div>
             <div class="pmg-tags">${node.tags.map(t => `<span>${t}</span>`).join('')}</div>
@@ -684,7 +901,6 @@ function initMobileGrid() {
         container.appendChild(card);
     });
 
-    // Filter buttons also filter the mobile grid
     document.querySelectorAll('.cf-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const test = filterTest(btn.dataset.filter);
@@ -693,6 +909,38 @@ function initMobileGrid() {
                 card.style.display = (node && test(node)) ? '' : 'none';
             });
         });
+    });
+}
+
+/* ===== MAGNETIC BUTTONS ===== */
+function initMagnetic() {
+    if (!FINE_POINTER || REDUCED_MOTION) return;
+
+    document.querySelectorAll('.magnetic').forEach(el => {
+        el.addEventListener('mousemove', e => {
+            const r = el.getBoundingClientRect();
+            const dx = e.clientX - (r.left + r.width / 2);
+            const dy = e.clientY - (r.top + r.height / 2);
+            el.style.transform = `translate(${dx * 0.22}px, ${dy * 0.3}px)`;
+        }, { passive: true });
+
+        el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+    });
+}
+
+/* ===== CARD TILT ===== */
+function initTilt() {
+    if (!FINE_POINTER || REDUCED_MOTION) return;
+
+    document.querySelectorAll('.tilt').forEach(el => {
+        el.addEventListener('mousemove', e => {
+            const r = el.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            el.style.transform = `perspective(700px) rotateX(${-py * 5}deg) rotateY(${px * 5}deg) translateY(-4px)`;
+        }, { passive: true });
+
+        el.addEventListener('mouseleave', () => { el.style.transform = ''; });
     });
 }
 
@@ -709,6 +957,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFooter();
 
     // 2. Wire up behavior on the rendered DOM
+    initEntry();
     initProgress();
     initHeader();
     initActiveNav();
@@ -719,5 +968,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initCounters();
     initConstellation();
     initConstellationFilters();
+    initCursorGlow();
     initMobileGrid();
+    initMagnetic();
+    initTilt();
 });

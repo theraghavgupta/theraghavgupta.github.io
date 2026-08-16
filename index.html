@@ -3,18 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Raghav Gupta — Data Engineer, AI & Analytics Consultant. Building data pipelines, dashboards, and ventures from Gurugram, India.">
+    <title>Raghav Gupta — and0</title>
+    <meta name="description" content="Raghav Gupta (and0) — solution architect in Gurugram. Data platforms, applied AI, harmonica, motorcycles, bad cocktails, and one very self-important cat.">
+    <meta name="author" content="Raghav Gupta">
+    <meta name="theme-color" content="#05050c">
+
+    <!-- Link preview (WhatsApp / LinkedIn / Slack / iMessage) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Raghav Gupta — and0">
+    <meta property="og:title" content="Raghav Gupta — and0">
+    <meta property="og:description" content="Solution architect in Gurugram. Data platforms, applied AI, harmonica, motorcycles, bad cocktails, and one very self-important cat.">
+    <meta property="og:url" content="https://theraghavgupta.github.io/">
+    <meta property="og:image" content="https://theraghavgupta.github.io/pictures/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Raghav Gupta — and0. A constellation of projects.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Raghav Gupta — and0">
+    <meta name="twitter:description" content="Solution architect in Gurugram. Data platforms, applied AI, harmonica, motorcycles, bad cocktails, and one very self-important cat.">
+    <meta name="twitter:image" content="https://theraghavgupta.github.io/pictures/og-image.png">
+
+    <link rel="canonical" href="https://theraghavgupta.github.io/">
     <link rel="shortcut icon" type="image/x-icon" href="pictures/favicon.ico">
     <link rel="stylesheet" href="style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Kalam&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
     <!-- content.js holds ALL the words on this site — edit that, not this file -->
     <script defer src="js/content.js"></script>
     <script defer src="js/main.js"></script>
-    <title>Raghav Gupta — and0</title>
 </head>
-<body>
+<body class="booting">
+
+<!-- Entry sequence: shows once per session, then removes itself -->
+<div class="entry-veil" id="entry-veil">
+    <div class="entry-mark">and0</div>
+</div>
+
+<!-- Film grain overlay -->
+<div class="grain" aria-hidden="true"></div>
 
 <div id="page-progress"></div>
 
@@ -54,6 +82,7 @@
 <!-- ===== HERO (content rendered from js/content.js → hero) ===== -->
 <section id="home" class="hero">
     <canvas id="hero-canvas"></canvas>
+    <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-content" id="hero-root"></div>
     <div class="hero-scroll">
         <div class="scroll-track"><div class="scroll-ball"></div></div>
