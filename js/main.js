@@ -51,7 +51,7 @@ function renderHero() {
         <blockquote class="hero-quote">
             ${h.quote.map(l => `<span>${l}</span>`).join('')}
         </blockquote>
-        <p class="hero-tagline">${h.tagline.replace(/\n/g, '<br>')}</p>
+        ${h.tagline ? `<p class="hero-tagline">${h.tagline.replace(/\n/g, '<br>')}</p>` : ''}
         <div class="hero-actions">
             <a href="${h.ctaPrimary.href}" class="btn-primary magnetic">${h.ctaPrimary.label}</a>
             <a href="${h.ctaGhost.href}" class="btn-ghost magnetic">${h.ctaGhost.label}</a>
