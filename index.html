@@ -6,7 +6,9 @@
     <title>Raghav Gupta — and0</title>
     <meta name="description" content="Raghav Gupta (and0) — solution architect in Gurugram. Data platforms, applied AI, harmonica, motorcycles, bad cocktails, and one very self-important cat.">
     <meta name="author" content="Raghav Gupta">
-    <meta name="theme-color" content="#05050c">
+    <meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#16161c" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="light dark">
 
     <!-- Link preview (WhatsApp / LinkedIn / Slack / iMessage) -->
     <meta property="og:type" content="website">
@@ -25,44 +27,34 @@
 
     <link rel="canonical" href="https://theraghavgupta.github.io/">
     <link rel="shortcut icon" type="image/x-icon" href="pictures/favicon.ico">
-    <link rel="stylesheet" href="style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Kalam&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300..700&family=Fira+Code:wght@400..500&family=Kalam&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
 
     <!-- content.js holds ALL the words on this site — edit that, not this file -->
     <script defer src="js/content.js"></script>
     <script defer src="js/main.js"></script>
 </head>
-<body class="booting">
-
-<!-- Entry sequence: shows once per session, then removes itself -->
-<div class="entry-veil" id="entry-veil">
-    <div class="entry-mark">and0</div>
-</div>
-
-<!-- Film grain overlay -->
-<div class="grain" aria-hidden="true"></div>
+<body>
 
 <div id="page-progress"></div>
 
-<!-- HEADER -->
 <header id="site-header">
     <a href="#home" class="header-logo">and0</a>
-    <nav class="header-nav" id="header-nav">
-        <a href="#about" data-section="about">About</a>
-        <a href="#journey" data-section="journey">Journey</a>
+    <nav class="header-nav">
+        <a href="#about"    data-section="about">About</a>
+        <a href="#journey"  data-section="journey">Journey</a>
         <a href="#projects" data-section="projects">Projects</a>
-        <a href="#arsenal" data-section="arsenal">Arsenal</a>
-        <a href="#life" data-section="life">Life</a>
-        <a href="#connect" data-section="connect">Connect</a>
+        <a href="#arsenal"  data-section="arsenal">Arsenal</a>
+        <a href="#life"     data-section="life">Life</a>
+        <a href="#connect"  data-section="connect">Connect</a>
     </nav>
-    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">
         <span></span><span></span><span></span>
     </button>
 </header>
 
-<!-- MOBILE MENU OVERLAY -->
 <div class="mobile-menu" id="mobile-menu">
     <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close menu">&times;</button>
     <nav class="mobile-nav">
@@ -79,55 +71,18 @@
     </div>
 </div>
 
-<!-- ===== HERO (content rendered from js/content.js → hero) ===== -->
-<section id="home" class="hero">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="hero-content" id="hero-root"></div>
-    <div class="hero-scroll">
-        <div class="scroll-track"><div class="scroll-ball"></div></div>
-        <span>Scroll</span>
-    </div>
-</section>
+<!-- Every section below is rendered from js/content.js -->
+<main>
+    <section id="home"     class="hero shell"></section>
+    <section id="about"    class="sec shell"></section>
+    <section id="journey"  class="sec shell"></section>
+    <section id="projects" class="sec shell"></section>
+    <section id="arsenal"  class="sec shell"></section>
+    <section id="life"     class="sec shell"></section>
+    <section id="connect"  class="sec sec-connect shell"></section>
+</main>
 
-<!-- ===== ABOUT (content.js → about) ===== -->
-<section id="about" class="sec-light">
-    <div class="sec-inner">
-        <div class="about-grid" id="about-root"></div>
-    </div>
-</section>
-
-<!-- ===== JOURNEY (content.js → journey) ===== -->
-<section id="journey" class="sec-dark">
-    <div class="sec-inner" id="journey-root"></div>
-</section>
-
-<!-- ===== PROJECTS CONSTELLATION (content.js → projects) ===== -->
-<section id="projects" class="sec-dark sec-constellation">
-    <div class="sec-inner" id="projects-root"></div>
-</section>
-
-<!-- ===== ARSENAL (content.js → arsenal) ===== -->
-<section id="arsenal" class="sec-light">
-    <div class="sec-inner" id="arsenal-root"></div>
-</section>
-
-<!-- ===== LIFE (content.js → life) ===== -->
-<section id="life" class="sec-dark">
-    <div class="sec-inner" id="life-root"></div>
-</section>
-
-<!-- ===== CONNECT (content.js → connect + socials) ===== -->
-<section id="connect" class="sec-connect">
-    <div class="sec-inner">
-        <div class="connect-wrap reveal-up" id="connect-root"></div>
-    </div>
-</section>
-
-<!-- ===== FOOTER (content.js → footer + socials) ===== -->
-<footer>
-    <div class="footer-inner" id="footer-root"></div>
-</footer>
+<footer id="site-footer" class="shell"></footer>
 
 </body>
 </html>
