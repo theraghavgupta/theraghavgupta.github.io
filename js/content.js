@@ -71,7 +71,7 @@ const CONTENT = {
 
         shortVersionLabel: "The short version",
         shortVersion: [
-            "I'm a solution architect. I build the data platforms and AI systems that large pharmaceutical companies use to decide things — where to send their field teams, which drug to acquire, what the evidence actually says. Four years in, all of it at one firm, which is either loyalty or inertia depending on the day you ask. Title on the badge: <strong>Associate Consultant (Technology), ProcDNA Analytics</strong>.",
+            "I'm a solution architect. I build the data platforms and AI systems that large pharmaceutical companies use to decide things — where to send their field teams, which drug to acquire, what the evidence actually says. Most of that work now is the unglamorous half of agentic AI: deciding what a model is allowed to see, and proving afterwards that it was right. Four years in, all of it at one firm, which is either loyalty or inertia depending on the day you ask. Title on the badge: <strong>Associate Consultant (Technology), ProcDNA Analytics</strong>.",
         ],
 
         honestLabel: "The honest one",
@@ -158,7 +158,7 @@ const CONTENT = {
                 node: "05", nodeStyle: "pro",
                 title: "Teaching machines to answer honestly",
                 period: "2025 — Now",
-                desc: "Natural-language querying, agents, evaluation. Same old question — <em>can I trust this?</em> — except the interface no longer signals its own uncertainty. It says everything in the same confident voice, and I don't think most people are taking that seriously enough.",
+                desc: "Natural-language querying, agents, and the half nobody demos. The model is the easy part; the hard part is the scaffolding that decides what it may touch and catches it when it's wrong — because the interface no longer signals its own uncertainty. It says everything in the same confident voice.",
             },
             {
                 tag: "NEXT", tagStyle: "future",
@@ -352,7 +352,7 @@ const CONTENT = {
                 { label: "C / C++",     level: "used"  },
               ]},
             { name: "Things I build agents with", icon: "ai",
-              quote: "Orchestration is easy. Knowing when the thing should refuse to answer is the job.",
+              quote: "Whichever one is fashionable this quarter. The hard part isn't in this box.",
               chips: [
                 { label: "LangChain",   level: "solid" },
                 { label: "LangGraph",   level: "solid" },
@@ -360,7 +360,16 @@ const CONTENT = {
                 { label: "Databricks Genie", level: "solid" },
                 { label: "GenAI / LLMs", level: "solid" },
                 { label: "RAG",         level: "solid" },
-                { label: "agent evaluation", level: "solid" },
+              ]},
+            { name: "How I know the agent is right", icon: "shield",
+              quote: "Orchestration is easy. Knowing when the thing should refuse to answer is the job.",
+              chips: [
+                { label: "validation layers",         level: "daily" },
+                { label: "expert-defined taxonomies", level: "daily" },
+                { label: "refusal design",            level: "daily" },
+                { label: "surfacing uncertainty",     level: "daily" },
+                { label: "human review loops",        level: "solid" },
+                { label: "scoped permissions",        level: "solid" },
               ]},
             { name: "Things I know that don't expire", icon: "code",
               quote: "Domain knowledge is the moat — I mostly get paid to know why two counts of the same thing disagree. The stack is rented.",
@@ -419,7 +428,7 @@ const CONTENT = {
         currentlyLabel: "Currently",
         currentlyUpdated: "August 2026",
         currently: [
-            { label: "Learning",   text: "evaluation harnesses — the unglamorous half of agents nobody demos" },
+            { label: "Learning",   text: "where an eval stops being a metric and starts being an argument with a domain expert" },
             { label: "Reading",    text: "one novel I keep restarting, and other people's incident write-ups" },
             { label: "Failing at", text: "clean note bends" },
             { label: "Planning",   text: "an overnight road trip for a couple of hundred colleagues, which is either logistics or a personality disorder" },
@@ -431,7 +440,7 @@ const CONTENT = {
         label: "Connect",
         heading: "Low bar for saying hello.",
         blurb: "Come argue with me. Data platforms, whether your biggest risk is technical or organisational, agent evaluation, the correct base spirit for anything, or that film you think was underrated.",
-        hiring: "If you're hiring: I do cloud data architecture and applied AI in regulated industries, and I'm better in a conversation than on a CV.<br>If you're not: even better, honestly.",
+        hiring: "If you're hiring: I build the evaluation and permission layers that make agents safe to point at regulated data — and I'm better in a conversation than on a CV.<br>If you're not: even better, honestly.",
         extraLinks: [
             { label: "LeetCode →",   url: "https://leetcode.com/theraghavgupta" },
             { label: "HackerRank →", url: "https://www.hackerrank.com/theraghavgupta" },
